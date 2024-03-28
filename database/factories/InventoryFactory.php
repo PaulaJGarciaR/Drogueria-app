@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Inventory>
  */
-class ProductFactory extends Factory
+class InventoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,13 +17,12 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word,
-            'description' => $this->faker->sentence,
-            'price_buy' => $this->faker->randomFloat(2, 0, 1000),
+            'product_id' => \App\Models\Product::factory(),
+            'product_category' => $this->faker->word(),
             'price_sale' => $this->faker->randomFloat(2, 0, 1000), 
             'quantity_in_stock' => $this->faker->randomNumber(2),
             'expiration_date' => $this->faker->dateTimeThisDecade(),
-            'photo'=> $this->faker->photoUrl = 'https://picsum.photos/200/300?random='.rand(),
+            'supplier' => $this->faker->name,
         ];
     }
 }

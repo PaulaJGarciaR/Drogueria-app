@@ -9,11 +9,11 @@ class Customer extends Model
 {
 use HasFactory;
     protected $table='customers';
-    protected $fillable=['name','email','address','phone'];
+    protected $fillable=['name','address','phone','email','photo'];
     protected $guarded=['id','create_at','update_at'];
 
-  public function orders()
+  public function sales()
   {
-    return $this->hasMany(Order::class);
+    return $this->hasMany(Sale::class);
   }
 }
