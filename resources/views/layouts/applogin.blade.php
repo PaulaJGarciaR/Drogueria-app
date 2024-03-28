@@ -31,11 +31,11 @@
 <body class="hold-transition bg-gradient-purple login-page">
     @yield('content')
 </body>
-<script src="backend/plugins/jquery/jquery.min.js"></script>
+<script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="backend/dist/js/adminlte.min.js"></script>
+<script src="{{asset('backend/dist/js/adminlte.min.js')}}"></script>
 @stack('scripts')
 
 </html>  

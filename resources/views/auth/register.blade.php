@@ -9,7 +9,7 @@
     <div class="card-body">
     <div class="w-100">
         <div class="text-center">
-          <a href="../public"><img src="https://res.cloudinary.com/dv8zlgkxm/image/upload/v1710475666/Esthyan_n54lng.png"  style="width:60%;" alt=""></a>
+          <a href="../public"><img src="https://res.cloudinary.com/dv8zlgkxm/image/upload/v1710475666/Esthyan_n54lng.png"  style="width:50%;" alt=""></a>
         </div>
       </div>
       <form method="POST" action="{{ route('register') }}">

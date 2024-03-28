@@ -5,13 +5,13 @@
 @section('content')
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline bg-white ">
+<div class="card card-outline bg-white ">
   <div class="card-body ">
     <div class="w-100">
       <div class="text-center">
-          <a href="../public"><img src="https://res.cloudinary.com/dv8zlgkxm/image/upload/v1710475666/Esthyan_n54lng.png" alt=""  style="width:60%;" ></a>
-        </div>
+          <a href="../public"><img src="https://res.cloudinary.com/dv8zlgkxm/image/upload/v1710475666/Esthyan_n54lng.png" alt=""  style="width:50%;" ></a>
       </div>
+    </div>
       <form method="POST" action="{{ route('login') }}">
                         @csrf
         <div class="input-group mb-3 border-bottom border-3" style="width:90%; margin:0 auto;">

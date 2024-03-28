@@ -9,11 +9,11 @@ class Order extends Model
 {
     use HasFactory;
     protected $table='orders';
-    protected $fillable=['product_id','client_id','date_order','total_amount'];
+    protected $fillable=['date','product_id','customer_id','total_amount'];
     protected $guarded=['id','create_at','update_at'];
   public function client()
   {
-    return $this->belongsTo(Client::class);
+    return $this->belongsTo(Customer::class);
   }
   public function product()
   {

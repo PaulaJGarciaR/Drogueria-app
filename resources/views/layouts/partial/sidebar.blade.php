@@ -30,7 +30,6 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-               
               </p>
             </a>
           </li>
@@ -38,42 +37,34 @@
           
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Charts
+            <i class="fa-solid fa-money-check-dollar text-white"></i>
+              <p class="text-white "  style="font-size:17px;">
+                Sales
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                <i class="fa-solid fa-users text-white "></i>
+                  <p class="text-white">Customers</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                <i class="fa-solid fa-syringe text-white"></i>
+                  <p class="text-white">Products</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
+                <i class="fa-solid fa-file-pen text-white"></i>
+                  <p class="text-white">Orders</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/charts/uplot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>uPlot</p>
-                </a>
-              </li>
+              
             </ul>
           </li>
-
-
-          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
