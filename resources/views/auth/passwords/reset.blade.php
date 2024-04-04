@@ -1,13 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mr-0 mt-4">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
+        <div class="col-md-8  d-flex justify-content-center ">
+            <div class="card w-75">
+                <div class="card-header border-0 bg-white"><p class="text-purple text-center" style="font-size:20px; font-weight:700;">{{ __('Reset Password') }}</p></div>
+                <div class="w-100 d-flex justify-content-center bg-white">
+                  <div class="w-50  ">
+                    <div class="text-center ">
+                      <a href="{{asset('../public')}}"><img src="https://res.cloudinary.com/dv8zlgkxm/image/upload/v1710475666/Esthyan_n54lng.png" alt=""  style="width:50%;" ></a>
+                    </div>
+                   </div>
+                </div>
+                <div class="card-body bg-white">
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
@@ -50,8 +56,8 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-6 offset-md-4 ">
+                                <button type="submit" class="btn bg-purple">
                                     {{ __('Reset Password') }}
                                 </button>
                             </div>
@@ -62,4 +68,5 @@
         </div>
     </div>
 </div>
+
 @endsection

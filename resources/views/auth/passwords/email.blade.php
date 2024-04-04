@@ -1,7 +1,7 @@
 @extends('layouts.applogin')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top:110px;">
     <div class="row justify-content-center ">
         <div class="w-50">
             <div class="card bg-white w-100 ">
