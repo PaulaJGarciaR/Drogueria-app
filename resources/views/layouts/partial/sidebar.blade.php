@@ -51,6 +51,7 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{route('products.index')}}"></a>
                 <a href="pages/charts/flot.html" class="nav-link">
                 <i class="fa-solid fa-syringe text-white"></i>
                   <p class="text-white">Products</p>
