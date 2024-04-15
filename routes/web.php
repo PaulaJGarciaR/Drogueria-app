@@ -18,9 +18,9 @@ use App\Http\controllers\SaleController;
 */
 //EJEMPLO DE RUTAS 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+return view('welcome');
+});
 
 // Route::get('/about', function () {
 // return 'Acerca de nosotros';
@@ -50,8 +50,8 @@ use App\Http\controllers\SaleController;
 
 Auth::routes();
 
-Route::group(['middleware'=>['auth']], function(){
-Route::get('/home', [App\Http\Controllers\HomeController::class,'index'])->name('home');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //PRODUCTS CONTROLLER
 Route::resource('products',ProductController::class);
 //CUSTOMERS CONTROLLER 
