@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -21,7 +23,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -29,7 +31,35 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image = $request->file('image');
+        $slug = str::slug($request->name);
+        if (isset($image))
+        {
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+
+            if (!file_exists('uploads/products'))
+            {
+                mkdir('uploads/products',0777,true);
+            }
+            $image->move('uploads/products',$imagename);
+        }else{
+            $imagename ="";
+        }
+
+        $product = new Product();
+			$product->id = $request->id;
+			$product->name = $request->name;
+			$product->description = $request->description;
+			$product->price_buy= $request->price_buy;
+            $product->price_sale= $request->price_sale;
+			$product->quantity_in_stock = $request->quantity_in_stock;
+            $product->expiration_Date = $request->expiration_Date;
+			$product->image = $imagename;
+			$product->save();
+
+            return view('products.index'); 
+        
     }
 
     /**

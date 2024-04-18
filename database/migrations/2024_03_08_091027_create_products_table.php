@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('price_sale',8,2);
             $table->integer('quantity_in_stock');
             $table->date('expiration_date');
-            $table->binary('photo')->nullable();
+            $table->string('image')->nullable();
         });
     }
 

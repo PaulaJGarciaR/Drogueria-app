@@ -1,77 +1,129 @@
 @extends('layouts.app')
+
+@section('title','List Products')
+
 @section('content')
-<div class="wrapper mt-4">
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <!-- Main content -->
-    <section class="content ">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card bg-white">
-              <div class="card-header border-0 bg-white mt-2">
-                <h4 class=" m-0 text-center justify-content-center text-purple "><b>Product List</b></h4>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body bg-white">
-                <table id="example2" class="table table-hover rounded">
-                  <thead>
-                  <tr class="">
-                    <th style="border-color:#6c757d;background:#d4bbfc">Id</th>
-                    <th style="border-color:#6c757d;background:#d4bbfc">Name</th>
-                    <th style="border-color:#6c757d;background:#d4bbfc">Description</th>
-                    <th style="border-color:#6c757d;background:#d4bbfc">Price_buy</th>
-                    <th style="border-color:#6c757d;background:#d4bbfc">Price_sale</th>
-                    <th style="border-color:#6c757d;background:#d4bbfc">Quantity_in_stock</th>
-                    <th style="border-color:#6c757d;background:#d4bbfc">Expiration_Date</th>
-                    <th style="border-color:#6c757d;background:#d4bbfc">Photo</th>
-                    <th style="border-color:#6c757d;background:#d4bbfc">Action</th>
-                  </tr>
-                  </thead>
-                <tbody>
-                  @foreach($products as $product)
-                  <tr>
-                  <td style="background:#f2ebfb;"><b>{{$product->id}}</b></td>
-                    <td class=" border-0 border-bottom border-2" style="border-color:#6c757d;">{{$product->name}}</td>
-                    <td class=" border-0 border-bottom border-2" style="border-color:#6c757d;">{{$product->description}}</td>
-                    <td class=" border-0 border-bottom border-2" style="border-color:#6c757d;">{{$product->price_buy}}</td>
-                    <td class=" border-0 border-bottom border-2" style="border-color:#6c757d;">{{$product->price_sale}}</td>
-                    <td class=" border-0 border-bottom border-2" style="border-color:#6c757d;">{{$product->quantity_in_stock}}</td>
-                    <td class=" border-0 border-bottom border-2" style="border-color:#6c757d;">{{$product->expiration_date}}</td>
-                    <td class=" border-0 border-bottom border-2" style="border-color:#6c757d;" >{{$product->photo}}</td>
-                    <td class=" border-0 border-bottom border-2" style="border-color:#6c757d;">
-                       <a href="{{route('products.edit', $product->id)}}" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
 
-                       <form class="d-inline delete-form" action="{{route('products.destroy', $product)}}" method="POST">
-                        @csrf 
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                       </form>
-                    </td>
-                  </tr>
-                  
-                  @endforeach
-                </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
+<div class="content-wrapper">
+    <section class="content-header">
+		<div class="container-fluid">
+		</div>
     </section>
-    <!-- /.content -->
-  </div>
-</div>
+    <section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header bg-secondary" style="font-size: 1.75rem;font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem;">
+							@yield('title')
+								<a href="{{ route('products.create') }}" class="btn btn-primary float-right" title="Nuevo"><i class="fas fa-plus nav-icon"></i></a>
+						</div>
+						<div class="card-body">
+							<table id="example1" class="table table-bordered table-hover" style="width:100%">
+								<thead class="text-primary">
+									<tr>
+										<th width="10px">ID</th>
+										<th>Name</th>
+                                        <th>Description</th>
+                                        <th>Price_buy</th>
+                                        <th>Price_sale</th>
+                                        <th>Quantity_in_stock</th>
+                                        <th>Expiration_Date</th>
+                                        <th>Photo</th>
+										<th width="60px">State</th>
+										<th width="50px">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach($products as $product)
+									<tr>
+										<td>{{$product->id}}</td>
+										<td>{{$product->name}}</td>
+                                        <td>{{$product->description}}</td>
+                                        <th>{{$product->price_buy}}</th>
+                                        <th>{{$product->price_sale}}</th>
+                                        <th>{{$product->quantity_in_stock}}</th>
+                                        <th>{{$product->expiration_date}}</th>
+                                        <th>{{$product->photo}}</th>
+										<td>
+											<input data-id="{{$product->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
+											data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $product->estado ? 'checked' : '' }}>
+										</td>
+										
+										<td>
+										
+											<a href="{{ route('products.edit',$product->id) }}" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+
+											<form class="d-inline delete-form" action="{{ route('products.destroy', $product) }}"  method="POST">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+											</form>
+
+										</td>
+									</tr>
+									@endforeach
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </section>
+ </div>
 @endsection
-@push('script')
-<script type="text/javascript">
+
+@push('scripts')
+	<script>
+		$(document).ready(function(){
+			$("example1").DataTable()
+		});
+		$(function() {
+			$('.toggle-class').change(function() {
+				var estado = $(this).prop('checked') == true ? 1 : 0;
+				var arl_id = $(this).data('id');
+				$.ajax({
+					type: "GET",
+					dataType: "json",
+					url: 'cambioestadoarl',
+					data: {'estado': estado, 'arl_id': arl_id},
+					success: function(data){
+					  console.log(data.success)
+					}
+				});
+			})
+		  })
+	</script>
+	<script>
+	$('.delete-form').submit(function(e){
+		e.preventDefault();
+		Swal.fire({
+			title: 'Estas seguro?',
+			text: "Este registro se eliminara definitivamente",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Aceptar',
+			cancelButtonText: 'Cancelar'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				this.submit();
+			}
+		})
+	});
+	</script>
+	@if(session('eliminar') == 'ok')
+		<script>
+			Swal.fire(
+				'Eliminado',
+				'El registro ha sido eliminado exitosamente',
+				'success'
+			)
+		</script>
+	@endif
+	<script type="text/javascript">
 		$(function () {
 			$("#example1").DataTable({
 				"responsive": true, 
@@ -80,13 +132,13 @@
 				//"buttons": ["excel", "pdf", "print", "colvis"],
 				"language": 
 						{
-							"sLengthMenu": "Mostrar MENU entradas",
+							"sLengthMenu": "Mostrar _MENU_ entradas",
 							"sEmptyTable": "No hay datos disponibles en la tabla",
-							"sInfo": "Mostrando START a END de TOTAL entradas",
+							"sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
 							"sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
 							"sSearch": "Buscar:",
 							"sZeroRecords": "No se encontraron registros coincidentes en la tabla",
-							"sInfoFiltered": "(Filtrado de MAX entradas totales)",
+							"sInfoFiltered": "(Filtrado de _MAX_ entradas totales)",
 							"oPaginate": {
 								"sFirst": "Primero",
 								"sPrevious": "Anterior",
