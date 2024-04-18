@@ -22,10 +22,6 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                        <div class="form-group label-floating">
-											<label class="control-label">Id<strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="id" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('id') }}">
-										</div>
 										<div class="form-group label-floating">
 											<label class="control-label">Name <strong style="color:red;">(*)</strong></label>
 											<input type="text" class="form-control" name="name" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('name') }}">
@@ -48,21 +44,20 @@
 											<input type="text" class="form-control" name="quantity_in_stock" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('quantity_in_stock') }}">
 										</div>
                                         <div class="form-group label-floating">
-											<label class="control-label">Quantity_in_stock<strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="quantity_in_stock" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('quantity_in_stock') }}">
-										</div>
-                                        <div class="form-group label-floating">
 											<label class="control-label">Expiration_date<strong style="color:red;">(*)</strong></label>
 											<input type="text" class="form-control" name="expiration_date" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('expiration_date') }}">
 										</div>
 
                                         <div class="row">
+										<div class="row">
 									<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 										<div class="form-group label-floating">
-											<label class="control-label">Fotografía</label>
+											<label class="control-label">Imagen</label>
 											<input type="file" class="form-control-file" name="image" id="image" >
 										</div>
 									</div>
+								</div>
+
 								</div>
                                         
 									</div>

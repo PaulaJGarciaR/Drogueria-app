@@ -29,7 +29,7 @@
                                         <th>Price_sale</th>
                                         <th>Quantity_in_stock</th>
                                         <th>Expiration_Date</th>
-                                        <th>Photo</th>
+                                        <th>Image</th>
 										<th width="60px">State</th>
 										<th width="50px">Action</th>
 									</tr>
@@ -40,11 +40,14 @@
 										<td>{{$product->id}}</td>
 										<td>{{$product->name}}</td>
                                         <td>{{$product->description}}</td>
-                                        <th>{{$product->price_buy}}</th>
-                                        <th>{{$product->price_sale}}</th>
-                                        <th>{{$product->quantity_in_stock}}</th>
-                                        <th>{{$product->expiration_date}}</th>
-                                        <th>{{$product->photo}}</th>
+                                        <td>{{$product->price_buy}}</td>
+                                        <td>{{$product->price_sale}}</td>
+                                        <td>{{$product->quantity_in_stock}}</td>
+                                        <td>{{$product->expiration_date}}</td>
+                                        <td>@if ($product->image!=null)
+											<p class="text-center"><img class="img-responsive img-thumbnail" src="{{ asset('uploads/products/'.$product->image) }}" style="height: 70px; width: 70px;" alt=""></p>
+										@elseif ($product->image==null)
+										@endif</td>
 										<td>
 											<input data-id="{{$product->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
 											data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $product->estado ? 'checked' : '' }}>

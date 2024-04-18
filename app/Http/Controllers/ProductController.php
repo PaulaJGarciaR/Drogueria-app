@@ -32,33 +32,32 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $image = $request->file('image');
-        $slug = str::slug($request->name);
-        if (isset($image))
-        {
-            $currentDate = Carbon::now()->toDateString();
-            $imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+			$slug = Str::slug($request->name);
+			if (isset($image))
+			{
+				$currentDate = Carbon::now()->toDateString();
+				$imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
 
-            if (!file_exists('uploads/products'))
-            {
-                mkdir('uploads/products',0777,true);
-            }
-            $image->move('uploads/products',$imagename);
-        }else{
-            $imagename ="";
-        }
+				if (!file_exists('uploads/products'))
+				{
+					mkdir('uploads/products',0777,true);
+				}
+				$image->move('uploads/products',$imagename);
+			}else{
+				$imagename = "";
+			}
 
         $product = new Product();
-			$product->id = $request->id;
 			$product->name = $request->name;
 			$product->description = $request->description;
 			$product->price_buy= $request->price_buy;
             $product->price_sale= $request->price_sale;
 			$product->quantity_in_stock = $request->quantity_in_stock;
-            $product->expiration_Date = $request->expiration_Date;
+            $product->expiration_date = $request->expiration_date;
 			$product->image = $imagename;
 			$product->save();
 
-            return view('products.index'); 
+            return redirect()->route('products.index');
         
     }
 

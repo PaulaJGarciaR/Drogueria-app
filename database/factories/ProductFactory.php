@@ -23,7 +23,7 @@ class ProductFactory extends Factory
             'price_sale' => $this->faker->randomFloat(2, 0, 1000), 
             'quantity_in_stock' => $this->faker->randomNumber(2),
             'expiration_date' => $this->faker->dateTimeThisDecade(),
-            'photo'=> $this->faker->photoUrl = 'https://picsum.photos/200/300?random='.rand(),
+            
         ];
     }
 }
