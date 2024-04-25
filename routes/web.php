@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //PRODUCTS CONTROLLER
 Route::resource('products',ProductController::class);
+Route::get('changestatusproduct',[ProductController::class,'changestatusproduct'])->name('changestatusproduct');
 //CUSTOMERS CONTROLLER 
 Route::resource('customers',CustomerController::class);
 //SALES CONTROLLER 

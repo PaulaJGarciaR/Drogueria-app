@@ -33,6 +33,13 @@
   <link rel="stylesheet" href="{{asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.css">
+  <!-- Select2 -->
+	<link rel="stylesheet" href="{{asset('backend/plugins/select2/css/select2.min.css')}}">
+	<link rel="stylesheet" href="{{asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+	<link rel="stylesheet" href="{{asset('backend/dist/css/select2.css')}}">
+
+  <link rel="stylesheet" href="{{asset('backend/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
   <link rel="icon" href="https://res.cloudinary.com/depwl0l0w/image/upload/v1711512747/Esthyan_1_q0bqlq.png" type="">
 
     <!-- Scripts -->
@@ -94,5 +101,10 @@
 <script src="{{asset('backend/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('backend/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script src="{{asset('backend/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.js"></script>
+<!-- Select2 -->
+<script src="{{asset('backend/plugins/select2/js/select2.full.min.js')}}"></script>
+
 @stack('scripts')
 </html>

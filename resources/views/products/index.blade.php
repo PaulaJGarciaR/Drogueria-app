@@ -30,7 +30,7 @@
                                         <th>Quantity_in_stock</th>
                                         <th>Expiration_Date</th>
                                         <th>Image</th>
-										<th width="60px">State</th>
+										<th width="60px">Status</th>
 										<th width="50px">Action</th>
 									</tr>
 								</thead>
@@ -50,7 +50,7 @@
 										@endif</td>
 										<td>
 											<input data-id="{{$product->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
-											data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $product->estado ? 'checked' : '' }}>
+											data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $product->status ? 'checked' : '' }}>
 										</td>
 										
 										<td>
@@ -80,17 +80,17 @@
 @push('scripts')
 	<script>
 		$(document).ready(function(){
-			$("example1").DataTable()
+			$("products").DataTable()
 		});
 		$(function() {
 			$('.toggle-class').change(function() {
-				var estado = $(this).prop('checked') == true ? 1 : 0;
-				var arl_id = $(this).data('id');
+				var status = $(this).prop('checked') == true ? 1 : 0;
+				var product_id = $(this).data('id');
 				$.ajax({
 					type: "GET",
 					dataType: "json",
-					url: 'cambioestadoarl',
-					data: {'estado': estado, 'arl_id': arl_id},
+					url: 'changestatusproduct',
+					data: {'status': status, 'product_id': product_id},
 					success: function(data){
 					  console.log(data.success)
 					}

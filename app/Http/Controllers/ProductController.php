@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class ProductController extends Controller
 {
@@ -54,6 +55,8 @@ class ProductController extends Controller
             $product->price_sale= $request->price_sale;
 			$product->quantity_in_stock = $request->quantity_in_stock;
             $product->expiration_date = $request->expiration_date;
+            $product->status=1;
+            $product->registerby=$request->user()->id;
 			$product->image = $imagename;
 			$product->save();
 
@@ -88,8 +91,16 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+       return redirect()->route('products.index')->with('eliminar','ok');
     }
+
+    public function changestatusproduct(Request $request)
+	{
+		$product = Product::find($request->product_id);
+		$product->status=$request->status;
+		$product->save();
+	}
 }
