@@ -9,8 +9,8 @@ class Product extends Model
 {
     use HasFactory;
     protected $table='products';
-    protected $fillable=['name','description','price_buy','price_sale','quantity_in_stock','expiration_date','status','registerby','image'];
-    protected $guarded=['id','create_at','update_at','status','registerby'];
+    protected $fillable=['name','description','price_buy','price_sale','quantity_in_stock','expiration_date','status','registeredby','image'];
+    protected $guarded=['id','create_at','update_at','status','registeredby'];
   
     public function orders()
     {

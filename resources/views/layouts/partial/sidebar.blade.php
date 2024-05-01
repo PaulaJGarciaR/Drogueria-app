@@ -45,7 +45,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+              <a href="{{route('customers.index')}}" class="nav-link">
                 <i class="fa-solid fa-users text-white "></i>
                   <p class="text-white">Customers</p>
                 </a>

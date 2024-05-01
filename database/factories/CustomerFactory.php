@@ -21,7 +21,7 @@ class CustomerFactory extends Factory
             'address' => $this->faker->address,
             'phone' => $this->faker->phoneNumber, 
             'email' => $this->faker->unique()->safeEmail,
-            'photo'=> $this->faker->photoUrl = 'https://picsum.photos/200/300?random='.rand(),
+            'registeredby' => $this->faker->word,
         ];
     }
 }

@@ -6,3 +6,59 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+.form-control-sm {
+    min-height: calc(1.6em + 0.5rem + calc(var(--bs-border-width) * 2));
+    padding: 0 30px;
+    font-size: 0.7875rem;
+    border-radius: var(--bs-border-radius-sm);
+    
+  }
+  .toggle-on.btn,.toggle-off.btn { 
+    padding: 0px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  table.table-bordered.dataTable td {
+    border-left-width: 0;
+    text-align: center;
+    margin: auto 0;
+    vertical-align: middle;   
+}
+
+table.table-bordered.dataTable th{
+  vertical-align: bottom;
+  background-color: rgb(162, 104, 255);
+  text-align: center;
+  font-size: 15px;
+  
+
+}
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+ 
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+.dataTables_filter,.dataTables_length{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:10px 0;
+  width: 100%;
+  border-radius: 12px;
+  background-color: rgb(228, 205, 255);
+  margin-bottom: 20px;
+}
+
+
+.dataTables_filter>label,.dataTables_length> label{
+  margin-bottom: 0;
+ 
+}
+

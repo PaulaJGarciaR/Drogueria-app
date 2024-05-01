@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','List Products')
+@section('title','List Customers')
 
 @section('content')
 
@@ -10,21 +10,19 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
-						<div class="card-header border-0" style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center;color: rgb(82, 39, 151);">
+					<div class="card-header border-0" style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center;color: rgb(82, 39, 151);">
 							@yield('title')
-							<a  href="{{ route('products.create') }}" class="btn btn-primary ml-4 " title="Nuevo" style=" background-color: rgb(104, 39, 209); border: none;"><i class="fas fa-plus nav-icon"></i></a>
+							<a  href="{{ route('customers.create') }}" class="btn btn-primary ml-4 " title="Nuevo" style=" background-color: rgb(104, 39, 209); border: none;"><i class="fas fa-plus nav-icon"></i></a>
 						</div>
 						<div class="card-body ">
-							<table  id="example1" class="table table-bordered table-hover" style="width:100%">
+							<table id="example1" class="table table-bordered table-hover" style="width:100%">
 								<thead class="text-primary ">
 									<tr>
 										<th width="10px">ID</th>
 										<th>Name</th>
-                                        <th width="80px">Description</th>
-                                        <th>Price_buy</th>
-                                        <th>Price_sale</th>
-                                        <th>Quantity_in_stock</th>
-                                        <th>Expiration_Date</th>
+                                        <th width="80px">Address</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
                                         <th>Image</th>
 										<th>Registeredby</th>
 										<th width="60px">Status</th>
@@ -32,33 +30,31 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($products as $product)
+									@foreach($customers as $customer)
 									<tr>
-										<td >{{$product->id}}</td>
-										<td>{{$product->name}}</td>
-                                        <td>{{$product->description}}</td>
-                                        <td>{{$product->price_buy}}</td>
-                                        <td>{{$product->price_sale}}</td>
-                                        <td>{{$product->quantity_in_stock}}</td>
-                                        <td>{{$product->expiration_date}}</td>
-                                        <td>@if ($product->image!=null)
-											<p class="text-center"><img class="img-responsive img-thumbnail" src="{{ asset('uploads/products/'.$product->image) }}" style="height: 70px; width: 70px;" alt=""></p>
-										@elseif ($product->image==null)
+										<td >{{$customer->id}}</td>
+										<td>{{$customer->name}}</td>
+                                        <td>{{$customer->address}}</td>
+                                        <td>{{$customer->phone}}</td>
+                                        <td>{{$customer->email}}</td>
+                                        <td>@if ($customer->image!=null)
+											<p class="text-center"><img class="img-responsive img-thumbnail" src="{{ asset('uploads/customers/'.$customer->image) }}" style="height: 70px; width: 70px;" alt=""></p>
+										@elseif ($customer->image==null)
 										@endif</td>
-										<td>{{$product->registeredby}}</td>
+										<td>{{$customer->registeredby}}</td>
 										<td>
 											<div class="d-flex justify-content-center">
-											<input data-id="{{$product->id}}" class="toggle-class m-0" type="checkbox" data-onstyle="success" data-offstyle="danger" 
-											data-toggle="toggle" data-on="✔" data-off="✘" {{ $product->status ? 'checked' : '' }}>
+											<input data-id="{{$customer->id}}" class="toggle-class m-0" type="checkbox" data-onstyle="success" data-offstyle="danger" 
+											data-toggle="toggle" data-on="✔" data-off="✘" {{ $customer->status ? 'checked' : '' }}>
 											</div>
 											
 										</td>
 			
 										<td>
 										
-											<a href="{{ route('products.edit',$product->id) }}" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+											<a href="{{ route('customers.edit',$customer->id) }}" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
 
-											<form class="d-inline delete-form" action="{{ route('products.destroy', $product) }}"  method="POST">
+											<form class="d-inline delete-form" action="{{ route('customers.destroy', $customer) }}"  method="POST">
 												@csrf
 												@method('DELETE')
 												<button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
@@ -81,17 +77,17 @@
 @push('scripts')
 	<script>
 		$(document).ready(function(){
-			$("products").DataTable()
+			$("customers").DataTable()
 		});
 		$(function() {
 			$('.toggle-class').change(function() {
 				var status = $(this).prop('checked') == true ? 1 : 0;
-				var product_id = $(this).data('id');
+				var customer_id = $(this).data('id');
 				$.ajax({
 					type: "GET",
 					dataType: "json",
-					url: 'changestatusproduct',
-					data: {'status': status, 'product_id': product_id},
+					url: 'changestatuscustomer',
+					data: {'status': status, 'customer_id': customer_id},
 					success: function(data){
 					  console.log(data.success)
 					}

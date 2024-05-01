@@ -57,6 +57,7 @@ Route::resource('products',ProductController::class);
 Route::get('changestatusproduct',[ProductController::class,'changestatusproduct'])->name('changestatusproduct');
 //CUSTOMERS CONTROLLER 
 Route::resource('customers',CustomerController::class);
+Route::get('changestatuscustomer',[CustomerController::class,'changestatuscustomer'])->name('changestatuscustomer');
 //SALES CONTROLLER 
 Route::resource('sales',SaleController::class);
 });

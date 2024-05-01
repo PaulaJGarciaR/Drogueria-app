@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->binary('photo')->nullable();
+            $table->string('registeredby');
+            $table->string('status');
+            $table->string('image')->nullable();
         });
     }
 

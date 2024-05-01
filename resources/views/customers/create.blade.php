@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Create Products')
+@section('title','Create Customer')
 
 @section('content')
 
@@ -23,7 +23,7 @@
 							</div>
 						</div>
 						
-						<form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data" class="bg-white">
+						<form method="POST" action="{{ route('customers.store') }}" enctype="multipart/form-data" class="bg-white">
 							@csrf
 							
 							<div class="card-body">
@@ -33,26 +33,18 @@
 											<label class="control-label">Name <strong style="color:red;">(*)</strong></label>
 											<input type="text" class="form-control" name="name" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('name') }}">
 										</div>
-                                        <label class="control-label">Description<strong style="color:red;">(*)</strong></label>
-                                        <div style="display:flex;justify-content: center;">
-                                            <textarea name="description" rows="4" cols="190" value="{{ old('description') }}">
-                                           </textarea>
-                                          </div>
+                                        
                                           <div class="form-group label-floating">
-											<label class="control-label">Price_Buy <strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="price_buy" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('price_buy') }}">
+											<label class="control-label">Address <strong style="color:red;">(*)</strong></label>
+											<input type="text" class="form-control" name="address" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('price_buy') }}">
 										</div>
                                         <div class="form-group label-floating">
-											<label class="control-label">Price_Sale <strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="price_sale" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('price_sale') }}">
+											<label class="control-label">Phone <strong style="color:red;">(*)</strong></label>
+											<input type="text" class="form-control" name="phone" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('price_sale') }}">
 										</div>
                                         <div class="form-group label-floating">
-											<label class="control-label">Quantity_in_stock<strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="quantity_in_stock" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('quantity_in_stock') }}">
-										</div>
-                                        <div class="form-group label-floating">
-											<label class="control-label">Expiration_date<strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="expiration_date" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('expiration_date') }}">
+											<label class="control-label">Email<strong style="color:red;">(*)</strong></label>
+											<input type="text" class="form-control" name="email" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('quantity_in_stock') }}">
 										</div>
                                         <div class="form-group label-floating">
 											<label class="control-label">Registered By:<strong style="color:red;">(*)</strong></label>
