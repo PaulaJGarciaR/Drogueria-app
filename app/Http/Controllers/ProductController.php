@@ -56,7 +56,7 @@ class ProductController extends Controller
 			$product->quantity_in_stock = $request->quantity_in_stock;
             $product->expiration_date = $request->expiration_date;
             $product->status=1;
-            $product->registeredby=$request->user()->name ;
+            $product->registeredby=$request->user()->id; ;
 			$product->image = $imagename;
 			$product->save();
 
@@ -75,9 +75,9 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+       return view('products.edit',compact('product'));
     }
 
     /**
@@ -85,8 +85,38 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+			$product = Product::find($id);
+			
+			$image = $request->file('image');
+			$slug = str::slug($request->name);
+			if (isset($image))
+			{
+				$currentDate = Carbon::now()->toDateString();
+				$imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+
+				if (!file_exists('uploads/products'))
+				{
+					mkdir('uploads/products',0777,true);
+				}
+				$image->move('uploads/products',$imagename);
+			}else{
+				$imagename = $product->image;
+			
     }
+            $product->name = $request->name;
+			$product->description = $request->description;
+			$product->price_buy= $request->price_buy;
+            $product->price_sale= $request->price_sale;
+			$product->quantity_in_stock = $request->quantity_in_stock;
+            $product->expiration_date = $request->expiration_date;
+			$product->registeredby=$request->user()->id;
+            $product->status=1; 
+            $product->image = $imagename;
+			$product->save();
+
+            return redirect()->route('products.index')->with('successMsg','El registro se actualizó exitosamente');
+}
 
     /**
      * Remove the specified resource from storage.

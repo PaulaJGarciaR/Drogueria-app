@@ -56,7 +56,7 @@
 										</div>
                                         <div class="form-group label-floating">
 											<label class="control-label">Registered By:<strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="registradopor" value=" {{ Auth::user()->name ?? '' }}">
+											<input type="text" class="form-control" name="registradopor" value=" {{ Auth::user()->id}}">
 										</div>
 										<div class="form-group label-floating">
 											<label class="control-label">Status:<strong style="color:red;">(*)</strong></label>
@@ -65,12 +65,14 @@
 										
                                         <div class="row">
 										<div class="row">
-									<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-										<div class="form-group label-floating">
-											<label class="control-label">Imagen</label>
-											<input type="file" class="form-control-file" name="image" id="image" >
-										</div>
-									</div>
+										<div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Fotografía</label>
+                                        <input type="file" class="form-control-file" name="image" id="image">
+                                    </div>
+                                </div>
+                            </div>
 								</div>
 
 								</div>
