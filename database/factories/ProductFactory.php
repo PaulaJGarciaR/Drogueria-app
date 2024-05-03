@@ -25,6 +25,7 @@ class ProductFactory extends Factory
             'expiration_date' => $this->faker->dateTimeThisDecade(),
             'registeredby' => $this->faker->word,
             
+            
         ];
     }
 }

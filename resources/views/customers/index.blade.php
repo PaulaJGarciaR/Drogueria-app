@@ -20,6 +20,7 @@
 									<tr>
 										<th width="10px">ID</th>
 										<th>Name</th>
+										<th>identificationdocument</th>
                                         <th width="80px">Address</th>
                                         <th>Phone</th>
                                         <th>Email</th>
@@ -34,6 +35,7 @@
 									<tr>
 										<td >{{$customer->id}}</td>
 										<td>{{$customer->name}}</td>
+										<td>{{$customer->identificationdocument}}</td>
                                         <td>{{$customer->address}}</td>
                                         <td>{{$customer->phone}}</td>
                                         <td>{{$customer->email}}</td>

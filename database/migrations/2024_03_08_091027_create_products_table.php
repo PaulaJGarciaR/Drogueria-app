@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('quantity_in_stock');
             $table->date('expiration_date');
              $table->string('registeredby');
-             $table->string('status');
+            //  $table->string('status');
             $table->string('image')->nullable();
         });
     }
