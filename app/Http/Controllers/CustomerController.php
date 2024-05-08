@@ -7,6 +7,7 @@ use App\Models\Customer;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -15,8 +16,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers=Customer::all();
-        return view('customers.index',compact('customers'));
+        $customers = Customer::all();
+        return view('customers.index', compact('customers'));
     }
 
 
@@ -34,33 +35,32 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $image = $request->file('image');
-			$slug = Str::slug($request->name);
-			if (isset($image))
-			{
-				$currentDate = Carbon::now()->toDateString();
-				$imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+        $slug = Str::slug($request->name);
+        if (isset($image)) {
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-				if (!file_exists('uploads/customers'))
-				{
-					mkdir('uploads/customers',0777,true);
-				}
-				$image->move('uploads/customers',$imagename);
-			}else{
-				$imagename = "";
-			}
+            if (!file_exists('uploads/customers')) {
+                mkdir('uploads/customers', 0777, true);
+            }
+            $image->move('uploads/customers', $imagename);
+        } else {
+            $imagename = "";
+        }
 
         $customer = new Customer();
-			$customer->name = $request->name;
-			$customer->address = $request->address;
-			$customer->phone= $request->phone;
-            $customer->email= $request->email;
-            $customer->status=1;
-            $customer->registeredby=$request->user()->name ;
-			$customer->image = $imagename;
-			$customer->save();
+        $customer->name = $request->name;
+        $customer->identificationdocument = $request->identificationdocument;
+        $customer->address = $request->address;
+        $customer->phone = $request->phone;
+        $customer->email = $request->email;
+        $customer->status = 1;
+        $customer->registeredby = $request->user()->name;
+        $customer->image = $imagename;
+        $customer->save();
 
-            return redirect()->route('customers.index');
-        
+        return redirect()->route('customers.index')->with('successMsg', 'El registro se actualizó exitosamente');
+
     }
 
     /**
@@ -74,17 +74,46 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+
+    public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit', compact('customer'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CustomerRequest $request, string $id)
     {
-        //
+        $customer = Customer::find($id);
+
+        $image = $request->file('image');
+        $slug = str::slug($request->name);
+        if (isset($image)) {
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            if (!file_exists('uploads/customers')) {
+                mkdir('uploads/customers', 0777, true);
+            }
+            $image->move('uploads/customers', $imagename);
+        } else {
+            $imagename = $customer->image;
+        }
+
+
+        $customer->name = $request->name;
+        $customer->identificationdocument = $request->identificationdocument;
+        $customer->address = $request->address;
+        $customer->phone = $request->phone;
+        $customer->email = $request->email;
+        $customer->status = 1;
+        $customer->registeredby = $request->user()->name;
+        $customer->image = $imagename;
+        $customer->save();
+
+        return redirect()->route('products.index')->with('successMsg', 'El registro se actualizó exitosamente');
     }
 
     /**
@@ -93,12 +122,12 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
-       return redirect()->route('customers.index')->with('eliminar','ok');
+        return redirect()->route('customers.index')->with('eliminar', 'ok');
     }
     public function changestatuscustomer(Request $request)
-	{
-		$customer = Customer::find($request->customer_id);
-		$customer->status=$request->status;
-		$customer->save();
-	}
+    {
+        $customer = Customer::find($request->customer_id);
+        $customer->status = $request->status;
+        $customer->save();
+    }
 }

@@ -61,7 +61,7 @@ class ProductController extends Controller
 			$product->image = $imagename;
 			$product->save();
 
-            return redirect()->route('products.index');
+            return redirect()->route('products.index')->with('successMsg','El registro se actualizó exitosamente');
         
     }
 
@@ -86,25 +86,23 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, string $id)
     {
-        
-			$product = Product::find($id);
-			
-			$image = $request->file('image');
-			$slug = str::slug($request->name);
-			if (isset($image))
-			{
-				$currentDate = Carbon::now()->toDateString();
-				$imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+            $product = Product::find($id);
 
-				if (!file_exists('uploads/products'))
-				{
-					mkdir('uploads/products',0777,true);
-				}
-				$image->move('uploads/products',$imagename);
-			}else{
-				$imagename = $product->image;
+            $image = $request->file('image');
+            $slug = str::slug($request->name);
+            if (isset($image)) {
+                $currentDate = Carbon::now()->toDateString();
+                $imagename = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+    
+                if (!file_exists('uploads/products')) {
+                    mkdir('uploads/products', 0777, true);
+                }
+                $image->move('uploads/products', $imagename);
+            } else {
+                $imagename = $product->image;
+            }
 			
-    }
+    
             $product->name = $request->name;
 			$product->description = $request->description;
 			$product->price_buy= $request->price_buy;

@@ -5,15 +5,17 @@
 @section('content')
 
 <div class="content-wrapper mt-4">
+@include('layouts.partial.msg')
     <section class="content">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
-						<div class="card-header border-0" style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center;color: rgb(82, 39, 151);">
+						<div class="card-header border-0" style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center; color:#000;">
 							@yield('title')
-							<a  href="{{ route('products.create') }}" class="btn btn-primary ml-4 " title="Nuevo" style=" background-color: rgb(104, 39, 209); border: none;"><i class="fas fa-plus nav-icon"></i></a>
+							<a  href="{{ route('products.create') }}" class="btn btn-primary ml-4 " title="Nuevo" style=" background-color:#3459FF; border: none;"><i class="fas fa-plus nav-icon"></i></a>
 						</div>
+						
 						<div class="card-body ">
 							<table  id="example1" class="table table-bordered table-hover" style="width:100%">
 								<thead class="text-primary ">
@@ -41,10 +43,14 @@
                                         <td>{{$product->price_sale}}</td>
                                         <td>{{$product->quantity_in_stock}}</td>
                                         <td>{{$product->expiration_date}}</td>
-                                        <td>@if ($product->image!=null)
-											<p class="text-center"><img class="img-responsive img-thumbnail" src="{{ asset('uploads/products/'.$product->image) }}" style="height: 70px; width: 70px;" alt=""></p>
-										@elseif ($product->image==null)
-										@endif</td>
+                                        <td>@if ($product->image != null)
+                                                        <center>
+                                                            <p><img class="img-responsive img-thumbnail"
+                                                                    src="{{ asset('uploads/products/' . $product->image) }}"
+                                                                    style="height: 70px; width: 70px;" alt=""></p>
+                                                        </center>
+                                                    @elseif ($product->image == null)
+                                                    @endif</td>
 										<td>{{$product->registeredby}}</td>
 										<td>
 											<div class="d-flex justify-content-center">

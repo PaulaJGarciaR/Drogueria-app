@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRecuest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,7 +21,20 @@ class ProductRecuest extends FormRequest
      */
     public function rules(): array
     {
+      
         if(request()->isMethod('post')){
+            return [
+                'name' => 'required|regex:/^[\pL\s\-]+$/u', 
+                'description' => 'nullable', 
+                'price_buy' => 'required|digits:6',
+                'price_sale' => 'required|digits:6',
+                'quantity_in_stock'=> 'required|digits:4',
+                'expiration_date'=>'required',
+                // 'registeredby'=>'required',
+                // 'status'=>'required',
+                //  'image'=>'nullable|mimes:jpg,jpeg,png|max:3000',
+            ];
+     }elseif(request()->isMethod('put')){
         return [
             'name' => 'required|regex:/^[\pL\s\-]+$/u', 
             'description' => 'nullable', 
@@ -29,22 +42,10 @@ class ProductRecuest extends FormRequest
             'price_sale' => 'required|digits:6',
             'quantity_in_stock'=> 'required|digits:4',
             'expiration_date'=>'required',
-            'registeredby'=>'required',
-            'status'=>'required',
-            'image'=>'nullable|mimes:jpg,jpeg,png|max:3000',
-        ];
-     }	elseif(request()->isMethod('put')){
-        return [
-            'name' => 'required|regex:/^[\pL\s\-]+$/u', 
-            'description' => 'nullable', 
-            'price_buy' => 'required|digits:6',
-            'price_sale' => 'required|digits:6',
-            'quantity_in_stock'=> 'required|digits:4',
-            'expiration_date'=>'required',
-            'registeredby'=>'required',
-            'status'=>'required',
-            'image'=>'nullable|mimes:jpg,jpeg,png|max:3000',
+            // 'registeredby'=>'required',
+            //'status'=>'required',
+            // 'image'=>'nullable|mimes:jpg,jpeg,png|max:3000',
         ];
     }
-    } 
+    }
 }

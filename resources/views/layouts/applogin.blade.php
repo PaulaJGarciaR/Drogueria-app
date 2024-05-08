@@ -28,7 +28,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @stack('css')
 </head>
-<body class="hold-transition bg-gradient-purple login-page">
+<body class="hold-transition login-page" style="background:#7F96FF;">
     @yield('content')
 </body>
 <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>

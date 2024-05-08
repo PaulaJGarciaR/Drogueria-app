@@ -1,10 +1,10 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar elevation-4" style="background:#A2B3FF;">
     <!-- Brand Logo -->
     <div class=" mt-4">
       <div class="d-flex justify-content-center">
-       <img class="w-25 rounded-circle mx-auto my-0" src="https://res.cloudinary.com/depwl0l0w/image/upload/v1711514027/Esthyan_2_btvv6g.png" alt="">
+       <img class="w-25 rounded-circle mx-auto my-0" src="https://res.cloudinary.com/dv8zlgkxm/image/upload/v1714878765/Esthyan_sxhdaz.png" alt="">
       </div>
-    <h5 class="text-center mt-1 text-white">Pharmacy<b>Esthyan</b></h5>
+    <h5 class="text-center mt-1">Pharmacy<b>Esthyan</b></h5>
     </div>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -13,7 +13,7 @@
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
-            <button class="btn btn-sidebar">
+            <button class="btn btn-sidebar" style="background:#3459FF;">
               <i class="fas fa-search fa-fw"></i>
             </button>
           </div>
@@ -26,7 +26,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="home" class="nav-link active">
+            <a href="home" class="nav-link active text-black" style="background:#3459FF;">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -35,31 +35,31 @@
           </li>
           
           
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="fa-solid fa-money-check-dollar text-white"></i>
-              <p class="text-white "  style="font-size:17px;">
+          <li class="nav-item ">
+            <a href="#" class="nav-link " style="background:#7F96FF;">
+             <i class="fa-solid fa-money-check-dollar text-black"></i>
+              <p class="text-black" style="font-size:17px;">
                 Sales
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              <a href="{{route('customers.index')}}" class="nav-link">
-                <i class="fa-solid fa-users text-white "></i>
-                  <p class="text-white">Customers</p>
+              <a href="{{route('customers.index')}}" class="nav-link text-black link-primary">
+                <i class="fa-solid fa-users"></i>
+                  <p>Customers</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('products.index')}}" class="nav-link">
-                <i class="fa-solid fa-syringe text-white"></i>
-                  <p class="text-white">Products</p>
+                <a href="{{route('products.index')}}" class="nav-link text-black link-primary">
+                <i class="fa-solid fa-syringe "></i>
+                  <p>Products</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                <i class="fa-solid fa-file-pen text-white"></i>
-                  <p class="text-white">Orders</p>
+                <a href="pages/charts/inline.html" class="nav-link text-black link-primary">
+                <i class="fa-solid fa-file-pen "></i>
+                  <p>Orders</p>
                 </a>
               </li>
               

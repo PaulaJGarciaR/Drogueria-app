@@ -24,22 +24,20 @@
     border-left-width: 0;
     text-align: center;
     margin: auto 0;
-    vertical-align: middle;   
+    vertical-align: middle;  
 }
 
 table.table-bordered.dataTable th{
   vertical-align: bottom;
-  background-color: rgb(162, 104, 255);
+  background-color: #7F96FF;;
   text-align: center;
   font-size: 15px;
-  
-
+  border-bottom: 2px solid #233BA4;
 }
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   display: flex;
- 
   flex-wrap: wrap;
   margin-top: calc(-1 * var(--bs-gutter-y));
   margin-right: calc(-0.5 * var(--bs-gutter-x));
@@ -52,7 +50,7 @@ table.table-bordered.dataTable th{
   padding:10px 0;
   width: 100%;
   border-radius: 12px;
-  background-color: rgb(228, 205, 255);
+  background-color: #D8DFFF;
   margin-bottom: 20px;
 }
 

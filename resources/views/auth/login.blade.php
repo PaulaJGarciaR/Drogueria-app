@@ -9,12 +9,12 @@
   <div class="card-body ">
     <div class="w-100">
       <div class="text-center">
-          <a href="../public"><img src="https://res.cloudinary.com/dv8zlgkxm/image/upload/v1710475666/Esthyan_n54lng.png" alt=""  style="width:50%;" ></a>
+          <a href="../public"><img src="https://res.cloudinary.com/dv8zlgkxm/image/upload/v1714876011/Esthyan_wuwlmi.png" alt=""  style="width:50%;" ></a>
       </div>
     </div>
       <form method="POST" action="{{ route('login') }}">
                         @csrf
-        <div class="input-group mb-3 border-bottom border-3" style="width:90%; margin:0 auto;">
+        <div class="input-group mb-3" style="width:90%; margin:0 auto;border-bottom:2px solid #7F96FF;">
           <input id="email" type="email" class="form-control @error('email') is-invalid @enderror bg-white border-0" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
             @error('email')
               <span class="invalid-feedback" role="alert">
@@ -23,11 +23,11 @@
             @enderror
           <div class="input-group-append">
             <div class="input-group-text bg-white border-0">
-              <span class="fas fa-envelope text-purple"></span>
+              <span class="fas fa-envelope" style="color:#2948D1;"></span>
             </div>
           </div>
         </div>
-        <div class="input-group mb-3 border-bottom border-3" style="width:90%; margin:0 auto;">
+        <div class="input-group mb-3" style="width:90%; margin:0 auto;border-bottom:2px solid #7F96FF;">
         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror bg-white border-0" name="password" required autocomplete="current-password" placeholder="Password">
           @error('password')
             <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
           @enderror
           <div class="input-group-append">
             <div class="input-group-text bg-white border-0">
-              <span class="fas fa-lock text-purple"></span>
+              <span class="fas fa-lock" style="color:#2948D1;"></span>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
           <!-- /.col -->
         </div>
         <div class="d-flex justify-content-center w-100 mt-4">
-          <button type="submit" class="btn bg-purple w-75 ">
+          <button type="submit" class="btn w-75" style="background:#7F96FF;">
                   <b>{{ __('Sing in') }}</b>
           </button>
           </div>
@@ -69,7 +69,7 @@
       <div class="w-100 d-flex justify-content-center align-items-center mt-5">
         <div class="text-center mr-2">New in ESTHYAN?</div>
         <a href="register"> 
-          <button type="submit" class="btn bg-pink w-100">
+          <button type="submit" class="btn w-100" style="background:#2948D1; color:white;" >
                   <b>{{ __('Create account') }}</b>
           </button>
         </a>
