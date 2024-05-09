@@ -17,11 +17,14 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')
             ->references('id')->on('products');
-            $table->integer('quantity');
+            $table->integer('quantity',10,0);
             $table->decimal('price_sale',8,2);
             $table->unsignedBigInteger('sale_id');
             $table->foreign('sale_id')
             ->references('id')->on('sales');
+            $table->string('registeredby');
+            $table->decimal('subtotal');
+            $table->string('ruta')->nullable();
         });
     }
 

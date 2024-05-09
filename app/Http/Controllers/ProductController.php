@@ -57,7 +57,7 @@ class ProductController extends Controller
 			$product->quantity_in_stock = $request->quantity_in_stock;
             $product->expiration_date = $request->expiration_date;
             $product->status=1;
-            $product->registeredby=$request->user()->id; ;
+            $product->registeredby=$request->user()->id; 
 			$product->image = $imagename;
 			$product->save();
 

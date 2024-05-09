@@ -9,7 +9,7 @@ class Sale extends Model
 {
     use HasFactory;
     protected $table='sales';
-    protected $fillable=['total_payment','date_of_sale','customer_id'];
+    protected $fillable=['total_payment','date_of_sale','customer_id','ruta','registeredby','status'];
     protected $guarded=['id','create_at','update_at'];
     public function customer()
 {

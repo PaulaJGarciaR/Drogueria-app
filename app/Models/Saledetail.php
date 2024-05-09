@@ -9,7 +9,7 @@ class Saledetail extends Model
 {
     use HasFactory;
     protected $table='salesdetails';
-    protected $fillable=['product_id','quantity','price_sale','sale_id'];
+    protected $fillable=['product_id','quantity','price_sale','sale_id','registeredby','subtotal','ruta'];
     protected $guarded=['id','create_at','update_at'];
     public function product()
 {
