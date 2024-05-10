@@ -57,7 +57,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link text-black link-primary">
+                <a href="{{route('sales.index')}}" class="nav-link text-black link-primary">
                 <i class="fa-solid fa-file-pen "></i>
                   <p>Orders</p>
                 </a>

@@ -19,6 +19,7 @@ class SaleController extends Controller
     {
         $sales=Sale::all();
         return view('sales.index',compact('sales'));
+        $sales=Sale::select('customers.name','customers.identidicationdocument','sales.date_of_sale','sales.total_payment','sales.status')->join('customers','customers_id','=','sale.customer_id');
     }
 
     /**
