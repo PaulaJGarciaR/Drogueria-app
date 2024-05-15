@@ -12,6 +12,7 @@
     padding: 0 30px;
     font-size: 0.7875rem;
     border-radius: var(--bs-border-radius-sm);
+    border:2px solid #ff98a2;
     
   }
   .toggle-on.btn,.toggle-off.btn { 
@@ -29,10 +30,10 @@
 
 table.table-bordered.dataTable th{
   vertical-align: bottom;
-  background-color: #7F96FF;;
+  background-color: #ff98a2;
   text-align: center;
   font-size: 15px;
-  border-bottom: 2px solid #233BA4;
+  border-bottom: 2px solid #DC3545;
 }
 .row {
   --bs-gutter-x: 1.5rem;
@@ -50,7 +51,6 @@ table.table-bordered.dataTable th{
   padding:10px 0;
   width: 100%;
   border-radius: 12px;
-  background-color: #D8DFFF;
   margin-bottom: 20px;
 }
 
@@ -59,4 +59,5 @@ table.table-bordered.dataTable th{
   margin-bottom: 0;
  
 }
+
 

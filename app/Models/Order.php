@@ -8,15 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $table='orders';
-    protected $fillable=['date','product_id','customer_id','total_amount'];
-    protected $guarded=['id','create_at','update_at'];
-  public function client()
-  {
-    return $this->belongsTo(Customer::class);
-  }
-  public function product()
-  {
-    return $this->belongsTo(Product::class);
-  }
+    public $timestamps = false;
+
+    protected $fillable = [
+        'customer_id',
+        'date_of_sale',
+        'total_payment',
+        'status',
+        'registeredby',
+        'route'
+    ];
+
+    protected $guarded = ['id'];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+    public function orderdetail()
+    {
+      return $this->hasMany(OrderDetail::class);
+    }
+    
 }

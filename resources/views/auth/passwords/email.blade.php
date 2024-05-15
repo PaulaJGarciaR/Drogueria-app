@@ -5,11 +5,11 @@
     <div class="row justify-content-center ">
         <div class="w-50">
             <div class="card bg-white w-100 ">
-                <div class="mt-3 text-center "><h3 style="color:#2948D1;"><b>{{ __('Reset Password') }}</b></h3></div>
+                <div class="mt-3 text-center text-black "><h3><b>{{ __('Reset Password') }}</b></h3></div>
                 <div class="w-100 d-flex justify-content-center">
                   <div class="w-50 ">
                     <div class="text-center ">
-                      <a href="{{asset('../public')}}"><img src="https://res.cloudinary.com/dv8zlgkxm/image/upload/v1714876011/Esthyan_wuwlmi.png" alt=""  style="width:60%;" ></a>
+                      <a href="{{asset('../public')}}"><img src="https://res.cloudinary.com/depwl0l0w/image/upload/v1715459231/Logo_tryic6.png" alt=""  style="width:60%;" ></a>
                     </div>
                    </div>
                 </div>
@@ -29,7 +29,7 @@
                             </div>
                     
                             <div class=" d-flex justify-content-center ">
-                                  <input id="email" type="email" class="w-50 mr-1 bg-white  form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus style="border:2px solid #7F96FF;">
+                                  <input id="email" type="email" class="w-50 mr-1 bg-white  form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus style="border:2px solid #FF8C8C;">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -37,7 +37,7 @@
                                 @enderror
                                 <div class="input-group-append">
                                   <div class="input-group-text bg-white border-0">
-                                      <span class="fas fa-envelope" style="color:#2948D1;"></span>
+                                      <span class="fas fa-envelope text-danger"></span>
                                   </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
 
                         <div class="">
                             <div class="d-flex justify-content-center mt-3">
-                                <button type="submit" class="btn" style="background:#7F96FF;font-weight: 700;">
+                                <button type="submit" class="btn bg-danger" style="font-weight: 700;">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\HomeController;
 use App\Http\controllers\ProductController;
 use App\Http\controllers\CustomerController;
-use App\Http\controllers\SaleController;
+use App\Http\controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +58,10 @@ Route::get('changestatusproduct',[ProductController::class,'changestatusproduct'
 //CUSTOMERS CONTROLLER 
 Route::resource('customers',CustomerController::class);
 Route::get('changestatuscustomer',[CustomerController::class,'changestatuscustomer'])->name('changestatuscustomer');
-//SALES CONTROLLER 
-Route::resource('sales',SaleController::class);
+//ORDERS CONTROLLER 
+Route::resource('orders',OrderController::class);
+Route::get('changestatusorder',[OrderController::class,'changestatusorder'])->name('changestatusorder');
 });
+
 
 

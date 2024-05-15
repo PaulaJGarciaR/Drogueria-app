@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->decimal('total_payment',8,2);
-            $table->date('date_of_sale')->nullable();
+
             $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')
-            ->references('id')->on('customers');
-            $table->string('ruta')->nullable();
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->date('date_of_sale')->nullable();
+            $table->decimal('total_payment',8,2)->nullable();
+            $table->string('status')->nullable();
             $table->string('registeredby');
-            //  $table->string('status');
-            $table->decimal('total',10,2);
+            $table->string('route')->nullable();
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('orders');
     }
 };

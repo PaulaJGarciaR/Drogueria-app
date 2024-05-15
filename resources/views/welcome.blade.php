@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-        <link rel="icon" href="https://res.cloudinary.com/depwl0l0w/image/upload/v1711512747/Esthyan_1_q0bqlq.png" type="">
+        <link rel="icon" href="https://res.cloudinary.com/depwl0l0w/image/upload/v1715459669/Esthyan_3_ca7woy.png" type="">
 
         <!-- Styles -->
         <style>

@@ -13,7 +13,7 @@
 					<div class="card">
 						<div class="card-header border-0" style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center; color:#000;">
 							@yield('title')
-							<a  href="{{ route('products.create') }}" class="btn btn-primary ml-4 " title="Nuevo" style=" background-color:#3459FF; border: none;"><i class="fas fa-plus nav-icon"></i></a>
+							<a  href="{{ route('products.create') }}" class="btn btn-primary ml-4 bg-danger" title="Nuevo" style=" border: none;"><i class="fas fa-plus nav-icon"></i></a>
 						</div>
 						
 						<div class="card-body ">

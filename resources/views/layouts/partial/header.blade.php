@@ -16,7 +16,7 @@
     <!-- Right navbar links -->
     <ul class=" ml-auto pr-4 ">
     
-       <div class="nav-item dropdown rounded d-flex align-items-center justify-content-center w-100 mx-2" style="background:#7F96FF;font-weight:700;">
+       <div class="nav-item dropdown rounded d-flex align-items-center justify-content-center w-100 mx-2 bg-danger">
           <div id="navbarDropdown" class="nav-link d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
           {{ Auth::user()->name ?? '' }} <i class="fa-solid fa-right-from-bracket mx-2"></i>
           </div>

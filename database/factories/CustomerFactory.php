@@ -18,7 +18,7 @@ class CustomerFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'identificationdocument'=>$this->faker->randomFloat(2, 0, 1000),
+            'identification_document'=>$this->faker->randomFloat(2, 0, 1000),
             'address' => $this->faker->address,
             'phone' => $this->faker->phoneNumber, 
             'email' => $this->faker->unique()->safeEmail,

@@ -12,9 +12,9 @@ class Product extends Model
     protected $fillable=['name','description','price_buy','price_sale','quantity_in_stock','expiration_date','status','registeredby','image'];
     protected $guarded=['id','create_at','update_at','status','registeredby'];
   
-    public function orders()
+    public function ordersdetails()
     {
-      return $this->hasMany(Order::class);
+      return $this->hasMany(OrderDetail::class);
     }
     
 }

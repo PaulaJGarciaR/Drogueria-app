@@ -1,6 +1,6 @@
 @extends('layouts.app')
 <head>
-<link rel="icon" href="https://res.cloudinary.com/depwl0l0w/image/upload/v1711512747/Esthyan_1_q0bqlq.png" type="">
+<link rel="icon" href="https://res.cloudinary.com/depwl0l0w/image/upload/v1715459669/Esthyan_3_ca7woy.png" type="">
 </head>
 @section('content')
 <div class="wrapper">

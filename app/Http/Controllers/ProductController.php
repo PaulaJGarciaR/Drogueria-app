@@ -61,7 +61,7 @@ class ProductController extends Controller
 			$product->image = $imagename;
 			$product->save();
 
-            return redirect()->route('products.index')->with('successMsg','El registro se actualizó exitosamente');
+            return redirect()->route('products.index')->with('successMsg','Successful Registration');
         
     }
 
@@ -114,7 +114,7 @@ class ProductController extends Controller
             $product->image = $imagename;
 			$product->save();
 
-            return redirect()->route('products.index')->with('successMsg','El registro se actualizó exitosamente');
+            return redirect()->route('products.index')->with('successMsg','Successful Registration');
 }
 
     /**
@@ -123,7 +123,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-       return redirect()->route('products.index')->with('eliminar','ok');
+       return redirect()->route('products.index')->with('delete','ok');
     }
 
     public function changestatusproduct(Request $request)

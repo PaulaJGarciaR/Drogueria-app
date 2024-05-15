@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="https://res.cloudinary.com/depwl0l0w/image/upload/v1711512747/Esthyan_1_q0bqlq.png" type="">
+    <link rel="icon" href="https://res.cloudinary.com/depwl0l0w/image/upload/v1715459669/Esthyan_3_ca7woy.png" type="">
   
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -28,7 +28,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @stack('css')
 </head>
-<body class="hold-transition login-page" style="background:#7F96FF;">
+<body class="hold-transition login-page bg-gradient-danger" >
     @yield('content')
 </body>
 <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>

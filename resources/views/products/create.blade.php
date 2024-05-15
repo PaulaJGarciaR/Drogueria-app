@@ -1,96 +1,124 @@
 @extends('layouts.app')
 
-@section('title','Create Products')
+@section('title', 'Create Products')
 
 @section('content')
 
 <div class="content-wrapper">
-    <section class="content-header">
+	<section class="content-header">
 		<div class="container-fluid">
 		</div>
-    </section>
+	</section>
 	@include('layouts.partial.msg')
 
 	<section class="content">
 		<div class="container-fluid ">
 			<div class="row ">
 				<div class="col-md-12 d-flex justify-content-center">
-				  <div class="card w-75 bg-white">
-					    <div class="card-header border-0 " style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center;color:#3459FF;background:white;">
+					<div class="card w-75 bg-white">
+						<div class="card-header border-0 "
+							style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center;color:#000;background:white;">
 							@yield('title')
-					    </div>
+						</div>
 						<div class="w-50 mx-auto">
 							<div class="d-flex justify-content-center">
-							<img src="https://res.cloudinary.com/dv8zlgkxm/image/upload/v1714876011/Esthyan_wuwlmi.png" alt=""  style="width:50%;" >
+								<img src="https://res.cloudinary.com/depwl0l0w/image/upload/v1715459231/Logo_tryic6.png"
+									alt="" style="width:50%;">
 							</div>
 						</div>
-						
-						<form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data" class="bg-white">
+
+						<form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data"
+							class="bg-white">
 							@csrf
-							
+
 							<div class="card-body">
 								<div class="row">
 									<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 										<div class="form-group label-floating">
-											<label class="control-label">Name <strong style="color:#3459FF;">(*)</strong></label>
-											<input type="text" class="form-control" name="name" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('name') }}">
+											<label class="control-label">Name <strong
+													class="text-danger">(*)</strong></label>
+											<input type="text" class="form-control" name="name"
+												placeholder="Product Name" autocomplete="off"
+												value="{{ old('name') }}">
 										</div>
-                                        <label class="control-label">Description<strong style="color:#3459FF;">(*)</strong></label>
-                                        <div style="display:flex;justify-content: center;">
-                                            <textarea name="description" rows="4" cols="190" value="{{ old('description') }}">
+										<label class="control-label">Description<strong
+												class="text-danger">(*)</strong></label>
+										<div style="display:flex;justify-content: center;">
+											<textarea name="description" rows="4" cols="190"
+												value="{{ old('description') }}">
                                            </textarea>
-                                          </div>
-                                          <div class="form-group label-floating">
-											<label class="control-label">Price_Buy <strong style="color:#3459FF;">(*)</strong></label>
-											<input type="text" class="form-control" name="price_buy" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('price_buy') }}">
-										</div>
-                                        <div class="form-group label-floating">
-											<label class="control-label">Price_Sale <strong style="color:#3459FF;">(*)</strong></label>
-											<input type="text" class="form-control" name="price_sale" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('price_sale') }}">
-										</div>
-                                        <div class="form-group label-floating">
-											<label class="control-label">Quantity_in_stock<strong style="color:#3459FF;">(*)</strong></label>
-											<input type="text" class="form-control" name="quantity_in_stock" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('quantity_in_stock') }}">
-										</div>
-                                        <div class="form-group label-floating">
-											<label class="control-label">Expiration_date<strong style="color:#3459FF;">(*)</strong></label>
-											<input type="text" class="form-control" name="expiration_date" placeholder="Por ejemplo, Positiva" autocomplete="off" value="{{ old('expiration_date') }}">
-										</div>
-                                        <div class="form-group label-floating">
-											<label class="control-label">Registered By:<strong style="color:#3459FF;">(*)</strong></label>
-											<input type="text" class="form-control" name="registradopor" value=" {{ Auth::user()->id}}">
 										</div>
 										<div class="form-group label-floating">
-											<label class="control-label">Status:<strong style="color:#3459FF;">(*)</strong></label>
+											<label class="control-label">Price_Buy <strong
+													class="text-danger">(*)</strong></label>
+											<input type="text" class="form-control" name="price_buy"
+												placeholder="purchase price" autocomplete="off"
+												value="{{ old('price_buy') }}">
+										</div>
+										<div class="form-group label-floating">
+											<label class="control-label">Price_Sale <strong
+													class="text-danger">(*)</strong></label>
+											<input type="text" class="form-control" name="price_sale"
+												placeholder="sales price" autocomplete="off"
+												value="{{ old('price_sale') }}">
+										</div>
+										<div class="form-group label-floating">
+											<label class="control-label">Quantity_in_stock<strong
+													class="text-danger">(*)</strong></label>
+											<input type="text" class="form-control" name="quantity_in_stock"
+												placeholder="Product quantity" autocomplete="off"
+												value="{{ old('quantity_in_stock') }}">
+										</div>
+										<div class="form-group label-floating">
+											<label class="control-label">Expiration_date<strong
+													class="text-danger">(*)</strong></label>
+											<input type="text" class="form-control" name="expiration_date"
+												placeholder="Expiration Date" autocomplete="off"
+												value="{{ old('expiration_date') }}">
+										</div>
+										<div class="form-group label-floating">
+											<label class="control-label">Registered By:<strong
+													class="text-danger">(*)</strong></label>
+											<input type="text" class="form-control" name="registradopor"
+												value=" {{ Auth::user()->id}}">
+										</div>
+										<div class="form-group label-floating">
+											<label class="control-label">Status:<strong
+													class="text-danger">(*)</strong></label>
 											<input type="text" class="form-control" name="estado" value="1">
 										</div>
-										
-                                        <div class="row">
-										<div class="row">
-										<div class="row">
-                                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Fotografía</label>
-                                        <input type="file" class="form-control-file" name="image" id="image">
-                                    </div>
-                                </div>
-                            </div>
-								</div>
 
-								</div>
-                                        
+										<div class="row">
+											<div class="row">
+												<div class="row">
+													<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+														<div class="form-group label-floating">
+															<label class="control-label">Image</label>
+															<input type="file" class="form-control-file" name="image"
+																id="image">
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+
 									</div>
 								</div>
 								<input type="hidden" class="form-control" name="estado" value="1">
-								<input type="hidden" class="form-control" name="registradopor" value="{{ Auth::user()->id }}">
+								<input type="hidden" class="form-control" name="registradopor"
+									value="{{ Auth::user()->id }}">
 							</div>
 							<div class="card-footer">
 								<div class="row d-flex justify-content-center">
 									<div class="col-lg-2 col-xs-4">
-										<button type="submit" class="btn  btn-block btn-flat rounded" style=" background-color: #7F96FF;font-weight: 700;color: black;">Registrar</button>
+										<button type="submit" class="btn btn-block btn-flat rounded bg-danger "
+											style="font-weight: 700;">Register</button>
 									</div>
 									<div class="col-lg-2 col-xs-4">
-										<a href="{{ route('products.index') }}" class="btn btn-danger btn-block btn-flat rounded"  style=" background-color:#3459FF;border:none;font-weight: 700;color: black;">Atras</a>
+										<a href="{{ route('products.index') }}"
+											class="btn btn-danger btn-block btn-flat rounded"
+											style="border:none;font-weight: 700;color: black;background:#ff98a2;">Back</a>
 									</div>
 								</div>
 							</div>

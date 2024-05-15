@@ -40,7 +40,7 @@
 	<link rel="stylesheet" href="{{asset('backend/dist/css/select2.css')}}">
 
   <link rel="stylesheet" href="{{asset('backend/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
-  <link rel="icon" href="https://res.cloudinary.com/depwl0l0w/image/upload/v1711512747/Esthyan_1_q0bqlq.png" type="">
+  <link rel="icon" href="https://res.cloudinary.com/depwl0l0w/image/upload/v1715459669/Esthyan_3_ca7woy.png" type="">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])

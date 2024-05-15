@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('registeredby');
-            //  $table->string('status');
+            $table->string('status')->nullable();
             $table->string('image')->nullable();
         });
     }
