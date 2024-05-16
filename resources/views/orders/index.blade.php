@@ -2,131 +2,145 @@
 @section('title', 'List of orders')
 
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
 
-                    @include('layouts.partial.msg')
+				@include('layouts.partial.msg')
 
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
+			</div>
+		</div><!-- /.container-fluid -->
+	</section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                        <div class="card-header border-0" style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center; color:#000;">
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card bg-white">
+						<div class="card-header border-0 bg-white"
+							style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center; color:#000;">
 							@yield('title')
-							<a  href="{{ route('orders.create') }}" class="btn btn-primary ml-4 bg-danger" title="Nuevo" style=" border: none;"><i class="fas fa-plus nav-icon"></i></a>
+							<a href="{{ route('orders.create') }}" class="btn btn-primary ml-4 bg-danger" title="Nuevo"
+								style=" border: none;"><i class="fas fa-plus nav-icon text-white"></i></a>
 						</div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <table id="example1" class="table table-bordered table-hover">
-                                    <thead class="text-primary">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Customer Name</th>
-                                            <th>Customer Document</th> 
-                                            <th>Date of Sale</th>
-                                             <!-- <th>Total</th> -->
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($orders as $order)
-                                            <tr>
-                                                <td>{{ $order->id }}</td>
-                                                <td>{{ $order->name}}</td>
-                                                <td>{{ $order->identification_document}}</td> 
-                                                <td>{{ $order->date_of_sale }}</td>
-                                                <!-- <td>{{ $order->total }}</td> -->
+						<div class="w-50 mx-auto bg-white">
+							<div class="d-flex justify-content-center">
+								<img src="https://res.cloudinary.com/depwl0l0w/image/upload/v1715459231/Logo_tryic6.png"
+									alt="" style="width:30%;">
+							</div>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<table id="example1" class="table table-bordered table-hover">
+								<thead class="text-primary">
+									<tr>
+										<th>ID</th>
+										<th>Customer Name</th>
+										<th>Customer Document</th>
+										<th>Date of Sale</th>
+										<th>Total</th>
+										<th>Registered by</th>
+										<th>Status</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach ($orders as $order)
+										<tr>
+											<td>{{ $order->id }}</td>
+											<td>{{ $order->name}}</td>
+											<td>{{ $order->identification_document}}</td>
+											<td>{{ $order->date_of_sale }}</td>
+											<td>{{  $order->total_payment  }}</td>
+											<td>{{  $order->registeredby  }}</td>
 
-                                                <td>
-											<div class="d-flex justify-content-center">
-											<input data-id="{{$order->id}}" class="toggle-class m-0" type="checkbox" data-onstyle="success" data-offstyle="danger" 
-											data-toggle="toggle" data-on="✔" data-off="✘" {{ $order->status ? 'checked' : '' }}>
-											</div>
-											
-										</td>
+											<td>
+												<div class="d-flex justify-content-center">
+													<input data-id="{{$order->id}}" class="toggle-class m-0" type="checkbox"
+														data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
+														data-on="✔" data-off="✘" {{ $order->status ? 'checked' : '' }}>
+												</div>
 
-                                        <td>
-											<a href="{{ route('orders.edit',$order->id) }}" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
-											<form class="d-inline delete-form" action="{{ route('orders.destroy', $order) }}"  method="POST">
-												@csrf
-												@method('DELETE')
-												<button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-											</form>
+											</td>
 
-										</td>
-                                                   
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
+											<td>
+												<a href="{{ route('orders.edit', $order->id) }}" class="btn btn-info btn-sm"
+													title="Editar"><i class="fas fa-pencil-alt"></i></a>
+												<form class="d-inline delete-form"
+													action="{{ route('orders.destroy', $order) }}" method="POST">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i
+															class="fas fa-trash-alt"></i></button>
+												</form>
+
+											</td>
+
+									@endforeach
+								</tbody>
+							</table>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
 
 
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-    </div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
 @endsection
 @push('scripts')
 	<script>
-		$(document).ready(function(){
+		$(document).ready(function () {
 			$("orders").DataTable()
 		});
-		$(function() {
-			$('.toggle-class').change(function() {
+		$(function () {
+			$('.toggle-class').change(function () {
 				var status = $(this).prop('checked') == true ? 1 : 0;
 				var order_id = $(this).data('id');
 				$.ajax({
 					type: "GET",
 					dataType: "json",
 					url: 'changestatusorder',
-					data: {'status': status, 'order_id': order_id},
-					success: function(data){
-					  console.log(data.success)
+					data: { 'status': status, 'order_id': order_id },
+					success: function (data) {
+						console.log(data.success)
 					}
 				});
 			})
-		  })
+		})
 	</script>
 	<script>
-	$('.delete-form').submit(function(e){
-		e.preventDefault();
-		Swal.fire({
-			title: 'Estas seguro?',
-			text: "Este registro se eliminara definitivamente",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Aceptar',
-			cancelButtonText: 'Cancelar'
-		}).then((result) => {
-			if (result.isConfirmed) {
-				this.submit();
-			}
-		})
-	});
+		$('.delete-form').submit(function (e) {
+			e.preventDefault();
+			Swal.fire({
+				title: 'Estas seguro?',
+				text: "Este registro se eliminara definitivamente",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Aceptar',
+				cancelButtonText: 'Cancelar'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					this.submit();
+				}
+			})
+		});
 	</script>
 	@if(session('eliminar') == 'ok')
 		<script>
@@ -140,39 +154,39 @@
 	<script type="text/javascript">
 		$(function () {
 			$("#example1").DataTable({
-				"responsive": true, 
-				"lengthChange": true, 
+				"responsive": true,
+				"lengthChange": true,
 				"autoWidth": false,
 				//"buttons": ["excel", "pdf", "print", "colvis"],
-				"language": 
-						{
-							"sLengthMenu": "Mostrar _MENU_ entradas",
-							"sEmptyTable": "No hay datos disponibles en la tabla",
-							"sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-							"sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
-							"sSearch": "Buscar:",
-							"sZeroRecords": "No se encontraron registros coincidentes en la tabla",
-							 "sInfoFiltered": "(Filtrado de _MAX_ entradas totales)",
-							"oPaginate": {
-								"sFirst": "Primero",
-								"sPrevious": "Anterior",
-								"sNext": "Siguiente",
-								"sLast": "Ultimo"
-							},
-							/*"buttons": {
-								"print": "Imprimir",
-								"colvis": "Visibilidad Columnas"
-								/*"create": "Nuevo",
-								"edit": "Cambiar",
-								"remove": "Borrar",
-								"copy": "Copiar",
-								"csv": "fichero CSV",
-								"excel": "tabla Excel",
-								"pdf": "documento PDF",
-								"collection": "Colección",
-								"upload": "Seleccione fichero...."
-							}*/
-						}
+				"language":
+				{
+					"sLengthMenu": "Mostrar _MENU_ entradas",
+					"sEmptyTable": "No hay datos disponibles en la tabla",
+					"sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+					"sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+					"sSearch": "Buscar:",
+					"sZeroRecords": "No se encontraron registros coincidentes en la tabla",
+					"sInfoFiltered": "(Filtrado de _MAX_ entradas totales)",
+					"oPaginate": {
+						"sFirst": "Primero",
+						"sPrevious": "Anterior",
+						"sNext": "Siguiente",
+						"sLast": "Ultimo"
+					},
+					/*"buttons": {
+						"print": "Imprimir",
+						"colvis": "Visibilidad Columnas"
+						/*"create": "Nuevo",
+						"edit": "Cambiar",
+						"remove": "Borrar",
+						"copy": "Copiar",
+						"csv": "fichero CSV",
+						"excel": "tabla Excel",
+						"pdf": "documento PDF",
+						"collection": "Colección",
+						"upload": "Seleccione fichero...."
+					}*/
+				}
 			});//.buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 		});
 	</script>

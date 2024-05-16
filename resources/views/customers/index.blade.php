@@ -10,11 +10,17 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
-					<div class="card">
-					  <div class="card-header border-0" style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center; color:#000;">
+					<div class="card bg-white">
+					  <div class="card-header border-0 bg-white" style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center; color:#000;">
 							@yield('title')
-							<a  href="{{ route('customers.create') }}" class="btn btn-primary ml-4 bg-danger" title="Nuevo" style=" border: none;"><i class="fas fa-plus nav-icon"></i></a>
+							<a  href="{{ route('customers.create') }}" class="btn btn-primary ml-4 bg-danger" title="Nuevo" style=" border: none;"><i class="fas fa-plus nav-icon text-white"></i></a>
 						</div>
+						<div class="w-50 mx-auto bg-white">
+                            <div class="d-flex justify-content-center">
+                                <img src="https://res.cloudinary.com/depwl0l0w/image/upload/v1715459231/Logo_tryic6.png"
+                                    alt="" style="width:30%;">
+                            </div>
+                        </div>
 						<div class="card-body ">
 							<table id="example1" class="table table-bordered table-hover" style="width:100%">
 								<thead class="text-primary ">

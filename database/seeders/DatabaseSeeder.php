@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Sale;
-use App\Models\Saledetail;
+use App\Models\OrderDetail;
 use App\Models\Inventory;
 class DatabaseSeeder extends Seeder
 {
@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         Product::factory(50)->create();
+         //Product::factory(50)->create();
         //Customer::factory(50)->create();
-         //Order::factory(5)->create();
+         Order::factory(1)->create();
       
-        //  Orderdetail::factory(5)->create();
+         //OrderDetail::factory(5)->create();
        
         
         // \App\Models\User::factory(10)->create();

@@ -17,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::select('customers.name', 'customers.identification_document', 'orders.id', 'orders.date_of_sale')
+        $orders = Order::select('customers.name', 'customers.identification_document', 'orders.id', 'orders.date_of_sale','orders.total_payment')
             ->join('customers', 'orders.customer_id', '=', 'customers.id')
             ->get();
 
@@ -53,39 +53,33 @@ class OrderController extends Controller
             'date_of_sale' => Carbon::now()->toDateTimeString(),
             'total_payment' => 0,
             'registeredby' => $request->user()->id,
+            'status'=>1,
         ]);
-        $order->status = 1;
-        $order->registeredby = $request->user()->id;
-        $ProductIds = Product::pluck('id')->toArray();
-        $storage_product_quantity = $request->quantity;
         $total_payment = 0;
-        $productId = $request->input('product');
-        echo $productId;
-        
-        for ($i = 0; $i < count($ProductIds); $i++) {
-            $product_find = Product::find($ProductIds[$i]);
-            if ($product_find==$productId) {
 
-                $subtotal = $storage_product_quantity * $product_find->price_sale;
-                $order->orderdetail()->create([
-                    'product_id' => $product_find->id,
-                    'quantity' => $storage_product_quantity,
-                    'subtotal' => $subtotal,
-                    'registeredby' => $request->user()->id,
-                ]);
-                $total_payment += $subtotal;
+        $storage_product_Id = $request->product_id;
+        $storage_product_quantity = $request->quantity;
+        for ($i = 0; $i < count($storage_product_Id); $i++) {
+            $product = Product::find($storage_product_Id[$i]);
+            $quantity = $storage_product_quantity[$i];
+            $subtotal = $product->price_sale * $quantity;
 
-            }
-            ;
+            $order->ordersdetails()->create([
+                'quantity' => $quantity,
+                'subtotal' => $subtotal,
+                'product_id' => $product->id,
+                'registeredby' => $request->user()->id,
+            ]);
+
+            $total_payment += $subtotal;
         }
-        ;
 
-        $order->total_payment = $total_payment;
-
-
+         $order->total_payment = $total_payment;
         $order->save();
-        return redirect()->route('orders.index')->with('successMsg', 'Successful Registration');
+
+        return redirect()->route("orders.index")->with('successMsg', 'order created');
     }
+
 
     /**
      * Display the specified resource.
