@@ -86,7 +86,15 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $order = Order::find($id);
+        $customer = Customer::where("id", $order->customer_id)->first();
+
+        $details = OrderDetail::select('ordersdetails.product_id', 'ordersdetails.quantity', 'ordersdetails.subtotal')
+            ->where('ordersdetails.order_id', '=', $id)
+            ->get();
+
+        return view("orders.show", compact("order", "details","customer"));
+
     }
 
     /**
@@ -111,7 +119,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
-        return redirect()->route('customers.index')->with('delete', 'ok');
+        return redirect()->route('orders.index')->with("successMsg", "Order deleted.");
     }
     public function changestatusorder(Request $request)
     {

@@ -25,7 +25,7 @@ class CustomerRequest extends FormRequest
             if(request()->isMethod('post')){
                 return [
                     'name' => 'required|regex:/^[\pL\s\-]+$/u', 
-                    'identificationdocument' => 'required|digits:10', 
+                    'identification_document' => 'required|digits:10', 
                     'address' => 'nullable',
                     'phone' => 'nullable',
                     'email'=> 'nullable',
@@ -36,7 +36,7 @@ class CustomerRequest extends FormRequest
          }elseif(request()->isMethod('put')){
             return [
                 'name' => 'required|regex:/^[\pL\s\-]+$/u', 
-                    'identificationdocument' => 'required|digits:10', 
+                    'identification_document' => 'required|digits:10', 
                     'address' => 'nullable',
                     'phone' => 'nullable',
                     'email'=> 'nullable',

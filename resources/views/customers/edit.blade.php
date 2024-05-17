@@ -42,9 +42,9 @@
 										<div class="form-group label-floating">
 											<label class="control-label">IdentificationDocument<strong
 													class="text-danger">(*)</strong></label>
-											<input type="text" class="form-control" name="identificationdocument"
+											<input type="text" class="form-control" name="identification_document"
 												placeholder="Por ejemplo, Positiva" autocomplete="off"
-												value="{{ $customer->identificationdocument}}">
+												value="{{ $customer->identification_document}}">
 										</div>
 										<div class="form-group label-floating">
 											<label class="control-label">Address<strong

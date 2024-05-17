@@ -68,15 +68,17 @@
 											</td>
 
 											<td>
-												<a href="{{ route('orders.edit', $order->id) }}" class="btn btn-info btn-sm"
-													title="Editar"><i class="fas fa-pencil-alt"></i></a>
-												<form class="d-inline delete-form"
-													action="{{ route('orders.destroy', $order) }}" method="POST">
-													@csrf
-													@method('DELETE')
-													<button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i
-															class="fas fa-trash-alt"></i></button>
-												</form>
+												<a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm"
+													title="Mostrar"><i class="fa-solid fa-camera"></i></a>
+													<form class="d-inline delete-form"
+                                                        action="{{ route('orders.destroy', $order) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class=" btn btn-danger btn-sm"
+                                                            title="Delete">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
 
 											</td>
 
@@ -103,6 +105,7 @@
 </div>
 @endsection
 @push('scripts')
+<script src="https://kit.fontawesome.com/a1efcc9a1e.js" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function () {
 			$("orders").DataTable()

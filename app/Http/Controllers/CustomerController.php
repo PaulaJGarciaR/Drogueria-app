@@ -55,7 +55,7 @@ class CustomerController extends Controller
         $customer->phone = $request->phone;
         $customer->email = $request->email;
         $customer->status = 1;
-        $customer->registeredby = $request->user()->name;
+        $customer->registeredby = $request->user()->id;
         $customer->image = $imagename;
         $customer->save();
 
@@ -104,7 +104,7 @@ class CustomerController extends Controller
 
 
         $customer->name = $request->name;
-        $customer->identificationdocument = $request->identificationdocument;
+        $customer->identification_document = $request->identification_document;
         $customer->address = $request->address;
         $customer->phone = $request->phone;
         $customer->email = $request->email;
@@ -113,7 +113,7 @@ class CustomerController extends Controller
         $customer->image = $imagename;
         $customer->save();
 
-        return redirect()->route('products.index')->with('successMsg', 'Successful Registration');
+        return redirect()->route('customer.index')->with('successMsg', 'Successful Registration');
     }
 
     /**
@@ -122,7 +122,7 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
-        return redirect()->route('customers.index')->with('delete', 'ok');
+        return redirect()->route('customers.index')->with('successMsg', 'Customer Delete');
     }
     public function changestatuscustomer(Request $request)
     {
