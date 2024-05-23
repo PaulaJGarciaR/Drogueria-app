@@ -179,9 +179,6 @@
         }
         var total = 0;
         function addListProducts() {
-            //Select Product
-            //Quantity
-            //Subtotal
             var productName = selectedOption.textContent;
             let newData = document.createElement("li");
             newData.textContent = productName + " " + quantity + " " + subtotal;

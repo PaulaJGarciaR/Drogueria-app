@@ -19,17 +19,17 @@
                         <div class="card">
                             <div class="card-body w-100">
                                 <h5 class="card-title " style="font-weight:700;">Orders Details</h5>
-                                <p class="card-text"><strong>Date of Sale:</strong> {{ $order->date_of_sale }}</p>
-                                <p class="card-text"><strong>Total:</strong> ${{ $order->total_payment }}</p>
+                                <p class="card-text"><strong>Date of Sale:</strong>{{$order->date_of_sale}} </p>
+                                <p class="card-text"><strong>Total Payment:</strong>{{$order->total_payment}} </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Customer Details</h5>
-                                <p class="card-text"><strong>Customer:</strong> {{ $customer->name }}</p>
-                                <p class="card-text"><strong>Document:</strong> {{ $customer->identification_document}}</p>
+                                <h5 class="card-title"><strong>Customer Details</strong></h5>
+                                <p class="card-text"><strong>Customer Name:</strong> {{ $order->name }}</p>
+                                <p class="card-text"><strong>Identification Document:</strong> {{ $order->identification_document}}</p>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                     <div class="card-header " style="background-color:#ff98a2;">
                         <h3 class="card-title w-100 text-center " style="font-weight:700;">Items Order</h3>
                     </div>
-                    <div class="card-body p-0">
+                    <div class="card-body p-0 ">
                         <table class="table table-bordered mb-0">
                             <thead class="thead-light">
                                 <tr>
@@ -49,21 +49,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                @foreach ($details as $detail)
+                            @foreach ($details as $detail)
                                     <tr>
-                                        <td>{{ $detail->product_id }}</td>
-                                        <td>${{ number_format($detail->product->price_sale, 2) }}</td>
-                                        <td>{{ $detail->quantity }}</td>
-                                        <td>${{ number_format($detail->subtotal, 2) }}</td>
+                                        <td>{{$detail->name}}</td>
+                                        <td>{{$detail->price_sale}}</td>
+                                        <td>{{$detail->quantity}}</td>
+                                        <td>{{$detail->subtotal}}</td>
                                     </tr>
-                                @endforeach
-
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </section>
-    </div>
+</div>
 @endsection

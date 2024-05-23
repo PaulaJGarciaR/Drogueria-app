@@ -85,15 +85,20 @@ class OrderController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
+
     {
-        $order = Order::find($id);
-        $customer = Customer::where("id", $order->customer_id)->first();
+        $order = Order::select('customers.name', 'customers.identification_document', 'orders.id', 'orders.date_of_sale','orders.total_payment','orders.status')
+        ->join('customers', 'orders.customer_id', '=', 'customers.id')
+        ->first();
+         $details = OrderDetail::select('products.name','products.price_sale','ordersdetails.quantity','ordersdetails.subtotal')
+         ->join('products','ordersdetails.product_id','=','products.id')
+         ->where('ordersdetails.order_id', '=', $id)
+         ->get();
+        
 
-        $details = OrderDetail::select('ordersdetails.product_id', 'ordersdetails.quantity', 'ordersdetails.subtotal')
-            ->where('ordersdetails.order_id', '=', $id)
-            ->get();
+        
 
-        return view("orders.show", compact("order", "details","customer"));
+         return view("orders.show", compact("order","details"));
 
     }
 

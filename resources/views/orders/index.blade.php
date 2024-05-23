@@ -69,7 +69,7 @@
 
 											<td>
 												<a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm"
-													title="Mostrar"><i class="fa-solid fa-camera"></i></a>
+													title="Mostrar"><i class="fa-solid fa-eye"></i></a>
 													<form class="d-inline delete-form"
                                                         action="{{ route('orders.destroy', $order) }}" method="POST">
                                                         @csrf
