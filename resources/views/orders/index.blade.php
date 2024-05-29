@@ -49,14 +49,14 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach ($orders as $order)
+									@foreach ($orders  as $order)
 										<tr>
 											<td>{{ $order->id }}</td>
 											<td>{{ $order->name}}</td>
 											<td>{{ $order->identification_document}}</td>
 											<td>{{ $order->date_of_sale }}</td>
-											<td>{{  $order->total_payment  }}</td>
-											<td>{{  $order->registeredby  }}</td>
+											<td>{{ $order->total_payment  }}</td>
+											<td>{{ $order->registeredby  }}</td>
 
 											<td>
 												<div class="d-flex justify-content-center">

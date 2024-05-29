@@ -5,6 +5,7 @@ use App\Http\controllers\HomeController;
 use App\Http\controllers\ProductController;
 use App\Http\controllers\CustomerController;
 use App\Http\controllers\OrderController;
+use App\Http\controllers\OrderDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,7 @@ Route::get('changestatuscustomer',[CustomerController::class,'changestatuscustom
 //ORDERS CONTROLLER 
 Route::resource('orders',OrderController::class);
 Route::get('changestatusorder',[OrderController::class,'changestatusorder'])->name('changestatusorder');
+
 });
 
 

@@ -55,69 +55,47 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="">
-                                    <h3 style="font-weight:700;" class="text-center">Detail Order</h3>
-                                    <div class="d-flex justify-content-evenly">
-                                        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Product</label>
-                                                <select class="form-control" name="product_id[]" id="product"
-                                                    onblur="getPrice()" onblur="getId()"
-                                                    value="{{ old('product_id') }}">
-                                                    <option value="">Name Product</option>
-                                                    @foreach ($products as $product)
-                                                        <option value="{{ $product->id }}"
-                                                            data-price="{{$product->price_sale}}">
-                                                            {{$product->name}}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label class="control-label">Quantity:</label>
-                                            <input type="text" class="form-control" name="quantity" id='quantity'
-                                                onblur="getQuantity()" placeholder="Quantity" autocomplete="off"
-                                                value="{{ old('quantity') }}">
-                                        </div>
-                                        <div class="bg-white">
-                                            <label class="control-label">Price_Sale:</label>
-                                            <div>
-                                                <label class="control-label" id="price_sale"></label>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div><label class="control-label">Subtotal:</label></div>
-                                            <label class="control-label" id="subtotal"></label>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-center w-50 mx-auto">
-                                        <div type="submit" id="add"
-                                            class="rounded bg-danger text-white w-25 text-center"
-                                            style="font-weight: 700;" onclick="addListProducts()">Add </div>
-                                    </div>
-                                    <div class=" mt-4  mx-auto rounded" style="background-color:#dae0f2;">
-                                        <div class="d-flex justify-content-evenly mx-auto pt-2">
-                                            <h6 style="font-weight:700;background-color:#ff98a2"
-                                                class="text-center p-2 rounded">Product_Name</h6>
-                                            <h6 style="font-weight:700;background-color:#ff98a2"
-                                                class="text-center p-2 rounded">Quantity</h6>
-                                            <h6 style="font-weight:700;background-color:#ff98a2"
-                                                class="text-center p-2 rounded">Subtotal</h6>
-                                            <h6 style="font-weight:700;background-color:#ff98a2"
-                                                class="text-center p-2 rounded">Action</h6>
-                                        </div>
-                                        <div class="p-2">
-                                            <ul class="w-100 text-center"
-                                                style="list-style-type:none; word-spacing:180px;" id="dataList"></ul>
-                                        </div>
-                                        <div class=" d-flex justify-content-center rounded" style="background-color:#C2C6D5">
-                                            <label for="" class="mr-2">Total:</label>
-                                            <label for="" id="total"></label>
-                                        </div>
-
-                                    </div>
+                                <div class="d-flex justify-content-center">
+                                    <h3 style="font-weight:700;" class="text-center align-items-center d-flex">Detail Order</h3>
+                                    <div class="card-header border-0 bg-white" style="font-size: 1.75rem;font-weight: 700; text-align: center; color:#000;">
+							         <a  href="{{ route('ordersdetails.create') }}" class="btn btn-primary  bg-danger" title="Nuevo" style=" border: none;"><i class="fas fa-plus nav-icon text-white"></i></a>
+						             </div>
+                            </div>
+                                
+                        <div class="card-body">
+							<table id="example1" class="table table-bordered table-hover">
+								<thead class="text-primary">
+									<tr>
+										<th>ID</th>
+										<th>Product Name</th>
+										<th>Quantity</th>
+                                        <th>SubTotal</th>
+                                        <th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+                                   @foreach ($ordersdetails as $orderdetail)
+										<tr>
+											<td>{{$orderdetail->id}}</td>
+                                            <td>{{$orderdetail->product_id}}</td>
+                                            <td>{{$orderdetail->quantity}}</td>
+                                            <td>{{$orderdetail->subtotal}}</td>
+											<td>
+											        <form class="d-inline delete-form"
+                                                        action="" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class=" btn btn-danger btn-sm"
+                                                            title="Delete">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
+											</td>
+                                      </tr>
+                                      @endforeach
+								</tbody>
+							</table> 
+						
                                 </div>
                                 <div class="form-group label-floating">
                                     <label class="control-label">Registered By:<strong
@@ -179,18 +157,7 @@
         }
         var total = 0;
         function addListProducts() {
-            var productName = selectedOption.textContent;
-            let newData = document.createElement("li");
-            newData.textContent = productName + " " + quantity + " " + subtotal;
-            document.getElementById("dataList").appendChild(newData);
-            var buttonDelete = document.createElement('button');
-            buttonDelete.style.border = 'none';
-            buttonDelete.style.marginLeft = '200px';
-            buttonDelete.style.backgroundColor = '#FF1C2F';
-            buttonDelete.style.marginTop = '4px';
-            buttonDelete.textContent = "✘";
-            buttonDelete.onclick = function () { newData.remove(); }
-            newData.appendChild(buttonDelete);
+            
             total = total + subtotal;
            document.getElementById('total').innerText=total;
         }
