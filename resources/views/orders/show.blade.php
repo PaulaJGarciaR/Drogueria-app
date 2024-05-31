@@ -28,8 +28,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"><strong>Customer Details</strong></h5>
-                                <p class="card-text"><strong>Customer Name:</strong> {{ $order->name }}</p>
-                                <p class="card-text"><strong>Identification Document:</strong> {{ $order->identification_document}}</p>
+                                <p class="card-text"><strong>Customer Name:</strong> {{ $customer->name}}</p>
+                                <p class="card-text"><strong>Identification Document:</strong> {{ $customer->identification_document}}</p>
                             </div>
                         </div>
                     </div>

@@ -77,15 +77,11 @@
 												value="{{ old('expiration_date') }}">
 										</div>
 										<div class="form-group label-floating">
-											<label class="control-label">Registered By:<strong
-													class="text-danger">(*)</strong></label>
-											<input type="text" class="form-control" name="registradopor"
+											<input type="hidden" class="form-control" name="registeredby"
 												value=" {{ Auth::user()->id}}">
 										</div>
 										<div class="form-group label-floating">
-											<label class="control-label">Status:<strong
-													class="text-danger">(*)</strong></label>
-											<input type="text" class="form-control" name="estado" value="1">
+											<input type="hidden" class="form-control" name="status" value="1">
 										</div>
 
 										<div class="row">

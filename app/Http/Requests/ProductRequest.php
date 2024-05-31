@@ -26,25 +26,21 @@ class ProductRequest extends FormRequest
             return [
                 'name' => 'required|regex:/^[\pL\s\-]+$/u', 
                 'description' => 'nullable', 
-                'price_buy' => 'required|digits:4',
-                'price_sale' => 'required|digits:4',
-                'quantity_in_stock'=> 'required|digits:3',
+                'price_buy' => 'required',
+                'price_sale' => 'required',
+                'quantity_in_stock'=> 'required',
                 'expiration_date'=>'required',
-                // 'registeredby'=>'required',
-                // 'status'=>'required',
-                //  'image'=>'nullable|mimes:jpg,jpeg,png|max:3000',
+                'image'=>'nullable|mimes:jpg,jpeg,png|max:6000',
             ];
      }elseif(request()->isMethod('put')){
         return [
             'name' => 'required|regex:/^[\pL\s\-]+$/u', 
             'description' => 'nullable', 
-            'price_buy' => 'required|digits:4',
-            'price_sale' => 'required|digits:4',
-            'quantity_in_stock'=> 'required|digits:3',
+            'price_buy' => 'required',
+            'price_sale' => 'required',
+            'quantity_in_stock'=> 'required',
             'expiration_date'=>'required',
-            // 'registeredby'=>'required',
-            //'status'=>'required',
-            // 'image'=>'nullable|mimes:jpg,jpeg,png|max:3000',
+            'image'=>'nullable|mimes:jpg,jpeg,png|max:6000',
         ];
     }
     }

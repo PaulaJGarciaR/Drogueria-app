@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create Orders')
+@section('title', 'Create Order')
 
 @section('content')
 
@@ -10,14 +10,13 @@
         </div>
     </section>
     @include('layouts.partial.msg')
-
     <section class="content">
-        <div class="container-fluid ">
-            <div class="row ">
+        <div class="container-fluid">
+            <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
-                    <div class="card w-75 bg-white">
+                    <div class="card w-75  bg-white">
                         <div class="card-header border-0 "
-                            style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center;color:#000;background:white;">
+                            style="font-size: 1.75rem;font-weight: 700;  margin-bottom: 0.5rem; text-align: center;background:white;">
                             @yield('title')
                         </div>
                         <div class="w-50 mx-auto">
@@ -29,138 +28,219 @@
                         <form method="POST" action="{{ route('orders.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body" id="form-fields">
-                                <div class="row d-flex">
-                                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                                        <div class="form-group label-floating">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                        <div class="form-group label-floating ">
                                             <label class="control-label">Customer<strong
                                                     style="color:red;">(*)</strong></label>
-                                            <select type="text" class="form-control" name="customer"
+                                            <select type="text" class="form-control select2" name="customer"
                                                 value="{{ old('customer') }}">
-                                                <option value="">Name Customer</option>
+                                                <option value="">Customer</option>
                                                 @foreach ($customers as $customer)
                                                     <option value="{{ $customer->id }}">
-                                                        {{$customer->name}}
+                                                        {{ $customer->name }}
                                                     </option>
-
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Date Order<strong
-                                                    style="color:red;">(*)</strong></label>
-                                            <input type="date" class="form-control" name="date" placeholder="YYYY-MM-DD"
-                                                autocomplete="off" value="{{old('date_of_sale')}}">
-                                        </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="hidden" class="form-control" name="status" value="1">
+                                        <input type="hidden" class="form-control" name="registeredby"
+												value=" {{ Auth::user()->id}}">
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-center">
-                                    <h3 style="font-weight:700;" class="text-center align-items-center d-flex">Detail Order</h3>
-                                    <div class="card-header border-0 bg-white" style="font-size: 1.75rem;font-weight: 700; text-align: center; color:#000;">
-							         <a  href="{{ route('ordersdetails.create') }}" class="btn btn-primary  bg-danger" title="Nuevo" style=" border: none;"><i class="fas fa-plus nav-icon text-white"></i></a>
-						             </div>
+
+                                <div class="row mt-2" data-details-field=true>
+                                    <div class="col-3 w-100">
+                                        <label class="control-label">Product<strong
+                                                style="color:red;">(*)</strong></label>
+                                        <select id="product" class="form-control">
+                                            <option value="-">Select a product</option>
+                                            @foreach ($products as $product)
+                                                <option value="{{ $product->id }}" data-price="{{ $product->price_sale }}"
+                                                    data-name="{{ $product->name }}">
+                                                    {{ $product->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="d-flex justify-content-around mt-4">
+                                        <div class="col-2">
+                                            <label for="quantity">Quantity</label>
+                                            <input type="number" name="quantity">
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="price">Price</label>
+                                            <input type="number" name="price" readonly value="">
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="subtotal">Subtotal</label>
+                                            <input type="number" name="subtotal" value="{{ old('subtotal')}}" readonly>
+                                        </div>
+                                        <div class=" d-flex align-items-center">
+                                            <button class="btn btn-danger" style="font-weight:700" id="add-btn">
+                                                Add
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-11 m-5">
+                                        <table class="table border">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" style="background-color:#CBCBCB;">Product</th>
+                                                    <th scope="col" style="background-color:#CBCBCB;">Quantity</th>
+                                                    <th scope="col" style="background-color:#CBCBCB;">Price</th>
+                                                    <th scope="col" style="background-color:#CBCBCB;">Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tbody id="list-products">
+                                            </tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="w-0 d-flex justify-content-center">
+                                <div class="col-4">
+                                    <span class="h3 d-block text-center m-1" id="total-text">
+                                        Total Payment: $0
+                                    </span>
+                                </div>
                                 
-                        <div class="card-body">
-							<table id="example1" class="table table-bordered table-hover">
-								<thead class="text-primary">
-									<tr>
-										<th>ID</th>
-										<th>Product Name</th>
-										<th>Quantity</th>
-                                        <th>SubTotal</th>
-                                        <th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-                                   @foreach ($ordersdetails as $orderdetail)
-										<tr>
-											<td>{{$orderdetail->id}}</td>
-                                            <td>{{$orderdetail->product_id}}</td>
-                                            <td>{{$orderdetail->quantity}}</td>
-                                            <td>{{$orderdetail->subtotal}}</td>
-											<td>
-											        <form class="d-inline delete-form"
-                                                        action="" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class=" btn btn-danger btn-sm"
-                                                            title="Delete">
-                                                            <i class="fas fa-trash-alt"></i>
-                                                        </button>
-                                                    </form>
-											</td>
-                                      </tr>
-                                      @endforeach
-								</tbody>
-							</table> 
-						
-                                </div>
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Registered By:<strong
-                                            class="text-danger">(*)</strong></label>
-                                    <input type="text" class="form-control" name="registeredby"
-                                        value=" {{ Auth::user()->id}}">
-                                </div>
-                                <div class="form-group label-floating">
-											<label class="control-label">Status:<strong
-													class="text-danger">(*)</strong></label>
-											<input type="text" class="form-control" name="status" value="1">
-										</div>
-
-                                <input type="hidden" class="form-control" name="status" value="1">
-                                <input type="hidden" class="form-control" name="registeredby"
-                                    value="{{ Auth::user()->id }}">
-
                             </div>
                             <div class="card-footer">
                                 <div class="row d-flex justify-content-center">
-                                    <div class="col-lg-2 col-xs-4">
+                                    <input name="total_payment" value="{{old('total_payment')}}" hidden>
+                                    <div class="col-4">
                                         <button type="submit"
-                                            class="btn  btn-block btn-flat rounded bg-danger text-black"
-                                            style="font-weight: 700;">Register </button>
+                                            class="btn btn-danger btn-block btn-flat" style="font-weight:700;">Register</button>
                                     </div>
-                                    <div class="col-lg-2 col-xs-4">
+                                    <div class="col-4">
                                         <a href="{{ route('orders.index') }}"
-                                            class="btn btn-danger btn-block btn-flat rounded"
-                                            style=" background-color:#ff98a2;border:none;font-weight: 700;color: black;">Back</a>
+                                            class="btn btn-danger btn-block btn-flat" style=" background-color:#ff98a2;border:none;font-weight: 700;color: black;">Back</a>
                                     </div>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </div>
+
+<style>
+    .select2 [role="textbox"] {
+        margin-top: -8px !important;
+        margin-left: -8px !important;
+    }
+</style>
 @endsection
+
 @push('scripts')
     <script>
-        var price = 0;
-        var selectProduct = 0;
-        var selectedOption = 0;
-        var quantity = 0;
-        var subtotal = 0;
-        function getPrice() {
-            selectProduct = document.getElementById('product');
-            selectedOption = selectProduct.options[selectProduct.selectedIndex];
-            price = selectedOption.getAttribute('data-price');
-            document.getElementById("price_sale").innerText = price;
+        class Order {
+            constructor(id, name, quantity, price) {
+                this.id = id;
+                this.name = name;
+                this.price = price;
+                this.quantity = quantity;
+            }
+
+            get subtotal() {
+                return this.price * this.quantity;
+            }
+
+            generateHTML() {
+                return `
+                        <tr>
+                            <td>${this.name}</td>
+                            <td>${this.quantity}</td>
+                            <td>$${this.price}</td>
+                            <td>$${this.subtotal}</td>
+                            <input hidden name="product_id[]" value="${this.id}">
+                            <input hidden name="quantity[]" value="${this.quantity}">
+                        </tr>
+                        `
+            }
         }
-        function getQuantity() {
-            quantity = parseFloat(document.getElementById("quantity").value);
-            subtotal = quantity * parseFloat(price);
-            document.getElementById('subtotal').innerText = subtotal;
+
+        // Nodes (DOM).
+        let nodeInputPrice = document.querySelector('[name="price"]')
+        let nodeInputQuantity = document.querySelector('[name="quantity"]')
+        let nodeInputSubtotal = document.querySelector('[name="subtotal"]')
+        let nodeInputTotal = document.querySelector('[name="total_payment"]')
+        let nodeListProducts = document.querySelector('#list-products')
+
+        function clearInputFields() {
+            nodeInputPrice.value = ''
+            nodeInputQuantity.value = ''
+            nodeInputSubtotal.value = ''
         }
-        var total = 0;
-        function addListProducts() {
-            
-            total = total + subtotal;
-           document.getElementById('total').innerText=total;
+
+        const orders = []
+
+        function pushOrder(order) {
+            orders.push(Object.assign(Object.create(Object.getPrototypeOf(order)), order))
+
+            let total = 0;
+            for (let order of orders) {
+                total += order.subtotal
+            }
+
+            document.querySelector('#total-text').innerText = `Total: $${total}`
+            document.querySelector('[name="total_payment"]').value = total
+            nodeInputTotal.value = total
+
+            nodeListProducts.innerHTML += order.generateHTML()
         }
-       
+
+        let currentOrder = new Order("", "", 0, 0)
+
+        function updateCurrentOrder() {
+            nodeInputPrice.value = currentOrder.price
+            nodeInputQuantity.value = currentOrder.quantity
+            nodeInputSubtotal.value = currentOrder.subtotal
+        }
+
+        $(document).ready(function () {
+            $('.select2').select2()
+
+            let productSelect = $('#product')
+            productSelect.select2();
+
+            $('#add-btn').on("click", (e) => {
+                e.preventDefault()
+
+                pushOrder(currentOrder)
+
+                clearInputFields()
+                productSelect.val('-')
+                productSelect.trigger('change');
+            })
+
+            productSelect.on('select2:select', function (e) {
+                currentOrder.id = parseInt(productSelect.find(':selected').val())
+                currentOrder.name = productSelect.find(':selected').data('name')
+                currentOrder.price = parseInt(productSelect.find(':selected').data('price'))
+                currentOrder.quantity = 0
+
+                updateCurrentOrder()
+            });
+        });
+
+        nodeInputQuantity.addEventListener('input', () => {
+            currentOrder.quantity = parseInt(nodeInputQuantity.value)
+            updateCurrentOrder()
+        })
     </script>
 @endpush

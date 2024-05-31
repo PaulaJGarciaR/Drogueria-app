@@ -55,8 +55,8 @@
 											<td>{{ $order->name}}</td>
 											<td>{{ $order->identification_document}}</td>
 											<td>{{ $order->date_of_sale }}</td>
-											<td>{{ $order->total_payment  }}</td>
-											<td>{{ $order->registeredby  }}</td>
+											<td>{{ $order->total_payment}}</td>
+											<td>{{ $order->registeredby}}</td>
 
 											<td>
 												<div class="d-flex justify-content-center">

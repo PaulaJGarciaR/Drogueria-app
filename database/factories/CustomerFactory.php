@@ -22,7 +22,13 @@ class CustomerFactory extends Factory
             'address' => $this->faker->address,
             'phone' => $this->faker->phoneNumber, 
             'email' => $this->faker->unique()->safeEmail,
+            'image'=>randomCustomerPhoto(),
             'registeredby' => $this->faker->word,
+            'status'=>1,
         ];
     }
+}
+function randomCustomerPhoto(): string
+{
+    return "imagescustomers/" . rand(1,10) . ".jpg";
 }

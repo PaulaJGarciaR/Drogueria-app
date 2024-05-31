@@ -24,8 +24,13 @@ class ProductFactory extends Factory
             'quantity_in_stock' => $this->faker->randomNumber(2),
             'expiration_date' => $this->faker->dateTimeThisDecade(),
             'registeredby' => $this->faker->word,
-            
+            'image'=>randomProductPhoto(),
+            'status'=>1,
             
         ];
     }
+}
+function randomProductPhoto(): string
+{
+    return "imagesmedicines/" . rand(1,10) . ".jpg";
 }

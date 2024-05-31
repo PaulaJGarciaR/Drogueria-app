@@ -32,7 +32,7 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
         $image = $request->file('image');
         $slug = Str::slug($request->name);

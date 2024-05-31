@@ -64,6 +64,21 @@ Route::resource('orders',OrderController::class);
 Route::get('changestatusorder',[OrderController::class,'changestatusorder'])->name('changestatusorder');
 
 });
+Route::get('/demo/error/404', function () {
+    abort(404);
+});
+Route::get('/demo/error/403', function () {
+    abort(403);
+});
+Route::get('/demo/error/419', function () {
+    abort(419);
+});
+Route::get('/demo/error/500', function () {
+    abort(500);
+});
+Route::get('/demo/error/503', function () {
+    abort(503);
+});
 
 
 

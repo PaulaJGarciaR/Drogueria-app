@@ -28,10 +28,8 @@ class CustomerRequest extends FormRequest
                     'identification_document' => 'required|digits:10', 
                     'address' => 'nullable',
                     'phone' => 'nullable',
-                    'email'=> 'nullable',
-                    // 'registeredby'=>'required',
-                    // 'status'=>'required',
-                    //  'image'=>'nullable|mimes:jpg,jpeg,png|max:3000',
+                    'email'=> 'required',
+                    'image'=>'nullable|mimes:jpg,jpeg,png|max:6000',
                 ];
          }elseif(request()->isMethod('put')){
             return [
@@ -39,10 +37,8 @@ class CustomerRequest extends FormRequest
                     'identification_document' => 'required|digits:10', 
                     'address' => 'nullable',
                     'phone' => 'nullable',
-                    'email'=> 'nullable',
-                // 'registeredby'=>'required',
-                //'status'=>'required',
-                // 'image'=>'nullable|mimes:jpg,jpeg,png|max:3000',
+                    'email'=> 'required',
+                    'image'=>'nullable|mimes:jpg,jpeg,png|max:6000',
             ];
         }
 

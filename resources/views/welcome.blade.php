@@ -39,22 +39,30 @@
                 @endauth
             </div>
         @endif 
-        </div>
-        <div style="width:100%;display:flex;font-family:arial;">
-          <div style="width:40%;text-align:center;">
-          <h1 style="text-align:center;">Welcome</h1>
-          <div style="display:flex;justify-content:center;"><h1 style="display:flex; align-items:center;">Esthyan<h1 style="background-color:#dc3545;padding:10px 20px;border-radius:10px;color:white;">Pharmacy</h1></h1></div>
-          <div style="width:100%;line-height:1.5em;display:flex;justify-content:center;">
-        <p style="width:70%;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A sit corporis delectus eveniet commodi voluptates culpa harum ea laboriosam animi unde quidem, reiciendis blanditiis dolores perspiciatis architecto. Corporis, aliquam exercitationem?</p>
-        
     </div>
-    <a href=""
-                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                        style="text-decoration:none;font-weight:700;font-size:20px;background-color:#007bff;padding:10px 20px;border-radius:20px;color:white;margin-top:100px">Shop Now</a>
+    <div style="width:100%;display:flex;font-family:arial;">
+        <div style="width:40%;text-align:center;">
+            <h1 style="text-align:center;">Welcome</h1>
+            <div style="display:flex;justify-content:center;">
+                <h1 style="display:flex; align-items:center;">Esthyan<h1
+                        style="background-color:#dc3545;padding:10px 20px;border-radius:10px;color:white;">Pharmacy</h1>
+                </h1>
+            </div>
+            <div style="width:100%;line-height:1.5em;display:flex;justify-content:center;margin-bottom:20px">
+                <p style="width:70%;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A sit corporis delectus
+                    eveniet commodi voluptates culpa harum ea laboriosam animi unde quidem, reiciendis blanditiis
+                    dolores perspiciatis architecto. Corporis, aliquam exercitationem?</p>
+
+            </div>
+            <a href=""
+                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                style="text-decoration:none;font-weight:700;font-size:20px;background-color:#007bff;padding:10px 20px;border-radius:20px;color:white;">Shop
+                Now</a>
         </div>
-           <div style="width:60%;background-color:red;">
-           <img style="width:100%;" src="https://cuenti.com/wp-content/uploads/2023/10/19198628-1080x675.jpg" alt="">
+        <div style="width:60%;">
+            <img style="width:100%;" src="https://cuenti.com/wp-content/uploads/2023/10/19198628-1080x675.jpg" alt="">
         </div>
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>

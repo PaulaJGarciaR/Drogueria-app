@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderDetail;
 use App\Models\Customer;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use \Exception;
 use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
@@ -31,53 +33,52 @@ class OrderController extends Controller
      */
     public function create()
     {
-        // $customers = Customer::all();
-        //  $products = Product::all();
         $customers = Customer::where('status', '=', '1')->orderBy('name')->get();
         $products = Product::where('status', '=', '1')->orderBy('name')->get();
-        $ordersdetails = OrderDetail::all();
-
-
-
-        return view('orders.create', compact('customers', 'products', 'ordersdetails'));
+        
+        return view('orders.create', compact('customers', "products"));
     }
 
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        $order = Order::create([
-            'customer_id' => Customer::find($request->customer)->id,
-            'date_of_sale' => Carbon::now()->toDateTimeString(),
-            'total_payment' => 0,
-            'registeredby' => $request->user()->id,
-            'status'=>1,
-        ]);
-        $total_payment = 0;
+        DB::beginTransaction();
 
-        $storage_product_Id = $request->product_id;
-        $storage_product_quantity = $request->quantity;
-        for ($i = 0; $i < count($storage_product_Id); $i++) {
-            $product = Product::find($storage_product_Id[$i]);
-            $quantity = $storage_product_quantity[$i];
-            $subtotal = $product->price_sale * $quantity;
-
-            $order->ordersdetails()->create([
-                'quantity' => $quantity,
-                'subtotal' => $subtotal,
-                'product_id' => $product->id,
+        try {
+            $order = Order::create([
+                'date_of_sale' => Carbon::now()->toDateTimeString(),
+                'total_payment' => $request->total_payment,
+                'customer_id' => Customer::find($request->customer)->id,
+                'status' => 1,
                 'registeredby' => $request->user()->id,
             ]);
 
-            $total_payment += $subtotal;
+            $rawProductId = $request->product_id;
+            $rawQuantity = $request->quantity;
+
+            for ($i = 0; $i < count($rawProductId); $i++) {
+                $product = Product::find($rawProductId[$i]);
+                $quantity = $rawQuantity[$i];
+
+                $order-> orderdetail()->create([
+                    'product_id' => $product->id,
+                    'quantity' => $quantity,
+                    'registeredby' => $request->user()->id,
+                    'subtotal'=> $product->price_sale*$quantity,
+                ]);
+            }
+
+            $order->save();
+            DB::commit();
+
+            return redirect()->route("orders.index")->with("successMsg", "The orders has been created.");
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with("successMsg", $e->getMessage());
         }
-
-         $order->total_payment = $total_payment;
-        $order->save();
-
-        return redirect()->route("orders.index")->with('successMsg', 'order created');
     }
 
 
@@ -87,9 +88,8 @@ class OrderController extends Controller
     public function show(string $id)
 
     {
-        $order = Order::select('customers.name', 'customers.identification_document', 'orders.id', 'orders.date_of_sale','orders.total_payment','orders.status')
-        ->join('customers', 'orders.customer_id', '=', 'customers.id')
-        ->first();
+        $order = Order::find($id);
+        $customer = Customer::where("id", $order->customer_id)->first();
          $details = OrderDetail::select('products.name','products.price_sale','ordersdetails.quantity','ordersdetails.subtotal')
          ->join('products','ordersdetails.product_id','=','products.id')
          ->where('ordersdetails.order_id', '=', $id)
@@ -98,7 +98,7 @@ class OrderController extends Controller
 
         
 
-         return view("orders.show", compact("order","details"));
+         return view("orders.show", compact("order","customer","details"));
 
     }
 
