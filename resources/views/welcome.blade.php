@@ -21,7 +21,7 @@
         style=" width:100%;display:flex;justify-content: flex-end">
         @if (Route::has('login'))
             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10"
-                style="width:20%;display:flex;justify-content:space-around;">
+                style="width:20%;display:flex;justify-content:space-around;font-family:arial;">
                 @auth
                     <a href="{{ url('/home') }}"
                         class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
@@ -44,10 +44,16 @@
         <div style="width:40%;text-align:center;">
             <h1 style="text-align:center;">Welcome</h1>
             <div style="display:flex;justify-content:center;">
-                <h1 style="display:flex; align-items:center;">Esthyan<h1
-                        style="background-color:#dc3545;padding:10px 20px;border-radius:10px;color:white;">Pharmacy</h1>
+                <h1 style="display:flex; align-items:center;font-size:40px">Esthyan<h1
+                        style="background-color:#dc3545;padding:10px 20px;border-radius:10px;color:white;font-size:40px">Pharmacy</h1>
                 </h1>
             </div>
+            <div class="w-50 mx-auto">
+							<div class="d-flex justify-content-center">
+								<img src="https://res.cloudinary.com/depwl0l0w/image/upload/v1715459231/Logo_tryic6.png"
+									alt="" style="width:50%;">
+							</div>
+						</div>
             <div style="width:100%;line-height:1.5em;display:flex;justify-content:center;margin-bottom:20px">
                 <p style="width:70%;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A sit corporis delectus
                     eveniet commodi voluptates culpa harum ea laboriosam animi unde quidem, reiciendis blanditiis

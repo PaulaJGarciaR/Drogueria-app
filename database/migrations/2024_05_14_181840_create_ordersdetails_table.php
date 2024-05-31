@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('registeredby');
             $table->decimal('subtotal');
-            $table->string('route')->nullable();
+            
         });
     }
 

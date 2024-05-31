@@ -25,12 +25,14 @@ class OrderRequest extends FormRequest
         if (request()->isMethod('post')) {
             return [
                 'total_payment' => 'required',
+                'subtotal'=>'required',
                 'status' => 'nullable',
                 'registered_by' => 'nullable',
             ];
         }  elseif (request()->isMethod('PUT')) {
             return [
                 'total_payment' => 'required',
+                 'subtotal'=>'required',
                 'status' => 'nullable',
                 'registered_by' => 'nullable',
             ];
