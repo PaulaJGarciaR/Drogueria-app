@@ -10,6 +10,7 @@ use App\Models\Customer;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use \Exception;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
@@ -19,7 +20,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::select('customers.name', 'customers.identification_document', 'orders.id', 'orders.date_of_sale','orders.total_payment','orders.status','orders.registeredby')
+        $orders = Order::select('customers.name', 'customers.identification_document', 'orders.id', 'orders.date_of_sale','orders.total_payment','orders.status','orders.registeredby','orders.route')
             ->join('customers', 'orders.customer_id', '=', 'customers.id')
             ->get();
 
@@ -73,6 +74,29 @@ class OrderController extends Controller
 
             $order->save();
             DB::commit();
+            $order->save();
+            DB::commit();
+
+            // Generate bill (PDF).
+            $pdfName = 'uploads/bills/bill_' . $order->id . '_' . Carbon::now()->format('YmdHis') . '.pdf';
+
+            $order = Order::find($order->id);
+            $customer = Customer::where("id", $order->customer_id)->first();
+            $details = OrderDetail::with('product')
+                ->where('ordersdetails.order_id', '=', $order->id)
+                ->get();
+
+            $pdf = PDF::loadView('orders.bill', compact("order", "customer", "details"))
+                ->setPaper('letter')
+                ->output();
+
+
+
+            file_put_contents($pdfName, $pdf);
+
+            $order->route = $pdfName;
+            $order->save();
+
 
             return redirect()->route("orders.index")->with("successMsg", "The orders has been created.");
         } catch (Exception $e) {

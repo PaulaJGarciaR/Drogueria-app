@@ -24,17 +24,25 @@ class OrderRequest extends FormRequest
 
         if (request()->isMethod('post')) {
             return [
-                'total_payment' => 'required',
-                'subtotal'=>'required',
-                'status' => 'nullable',
-                'registered_by' => 'nullable',
+                'total_payment' => 'required|numeric|min:0',
+                'customer' => 'required|exists:customers,id',
+                'status' => 'nullable|string',
+                'registeredby' => 'nullable|string',
+                'ordersdetails.*.quantity' => 'required|integer|min:1',
+                'ordersdetails.*.subtotal' => 'required|numeric|min:0',
+                'ordersdetails.*.product_id' => 'required|exists:products,id',
+                'ordersdetails.*.registeredby' => 'nullable|string'
             ];
         }  elseif (request()->isMethod('PUT')) {
             return [
-                'total_payment' => 'required',
-                 'subtotal'=>'required',
-                'status' => 'nullable',
-                'registered_by' => 'nullable',
+                'total_payment' => 'required|numeric|min:0',
+                 'customer' => 'required|exists:customers,id',
+                'status' => 'nullable|string',
+                'registeredby' => 'nullable|string',
+                'ordersdetails.*.quantity' => 'required|integer|min:1',
+                'ordersdetails.*.subtotal' => 'required|numeric|min:0',
+                'ordersdetails.*.product_id' => 'required|exists:products,id',
+                'ordersdetails.*.registeredby' => 'nullable|string'
             ];
         }
     }

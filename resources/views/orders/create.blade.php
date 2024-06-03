@@ -99,6 +99,7 @@
                                                     <th scope="col" style="background-color:#CBCBCB;">Quantity</th>
                                                     <th scope="col" style="background-color:#CBCBCB;">Price</th>
                                                     <th scope="col" style="background-color:#CBCBCB;">Subtotal</th>
+                                                    <th scope="col" style="background-color:#CBCBCB;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -162,17 +163,23 @@
 
             generateHTML() {
                 return `
-                        <tr>
-                            <td>${this.name}</td>
-                            <td>${this.quantity}</td>
-                            <td>$${this.price}</td>
-                            <td>$${this.subtotal}</td>
-                            <input hidden name="product_id[]" value="${this.id}">
-                            <input hidden name="quantity[]" value="${this.quantity}">
-                        </tr>
-                        `
+                                            <tr data-id="${this.id}">
+                                                <td>${this.name}</td>
+                                                <td>${this.quantity}</td>
+                                                <td>$${this.price}</td>
+                                                <td>$${this.subtotal}</td>
+                                                <td>
+                                                <input hidden name="product_id[]" value="${this.id}">
+                                                <input hidden name="quantity[]" value="${this.quantity}">
+                                                <div style="background-color:#dc3545;border:none;color:white;width:20%;text-align:center;cursor:pointer;" onclick="removeOrder(${this.id})">✘</div>
+                                                </td>
+
+
+                                            </tr>
+                            `
             }
         }
+
 
         // Nodes (DOM).
         let nodeInputPrice = document.querySelector('[name="price"]')
@@ -190,19 +197,45 @@
         const orders = []
 
         function pushOrder(order) {
-            orders.push(Object.assign(Object.create(Object.getPrototypeOf(order)), order))
+            orders.push(Object.assign(Object.create(Object.getPrototypeOf(order)), order));
 
             let total = 0;
             for (let order of orders) {
-                total += order.subtotal
+                total += order.subtotal;
             }
 
-            document.querySelector('#total-text').innerText = `Total: $${total}`
-            document.querySelector('[name="total_payment"]').value = total
-            nodeInputTotal.value = total
+            document.querySelector('#total-text').innerText = `Total: $${total}`;
+            document.querySelector('[name="total_payment"]').value = total;
+            nodeInputTotal.value = total;
 
-            nodeListProducts.innerHTML += order.generateHTML()
+            nodeListProducts.innerHTML += order.generateHTML();
         }
+        function removeOrder(orderId) {
+            // Encuentra el índice del pedido en la lista de pedidos
+            const index = orders.findIndex(order => order.id === orderId);
+            if (index !== -1) {
+                // Elimina el pedido de la lista
+                orders.splice(index, 1);
+
+                // Recalcula el total
+                let total = 0;
+                for (let order of orders) {
+                    total += order.subtotal;
+                }
+
+                // Actualiza la interfaz de usuario
+                document.querySelector('#total-text').innerText = `Total: $${total}`;
+                document.querySelector('[name="total_payment"]').value = total;
+                nodeInputTotal.value = total;
+
+                // Elimina el elemento HTML correspondiente
+                const orderElement = document.querySelector(`[data-id="${orderId}"]`);
+                if (orderElement) {
+                    orderElement.remove();
+                }
+            }
+        }
+
 
         let currentOrder = new Order("", "", 0, 0)
 
