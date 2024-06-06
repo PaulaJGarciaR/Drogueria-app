@@ -211,24 +211,17 @@
             nodeListProducts.innerHTML += order.generateHTML();
         }
         function removeOrder(orderId) {
-            // Encuentra el índice del pedido en la lista de pedidos
+            
             const index = orders.findIndex(order => order.id === orderId);
             if (index !== -1) {
-                // Elimina el pedido de la lista
                 orders.splice(index, 1);
-
-                // Recalcula el total
                 let total = 0;
                 for (let order of orders) {
                     total += order.subtotal;
                 }
-
-                // Actualiza la interfaz de usuario
                 document.querySelector('#total-text').innerText = `Total: $${total}`;
                 document.querySelector('[name="total_payment"]').value = total;
                 nodeInputTotal.value = total;
-
-                // Elimina el elemento HTML correspondiente
                 const orderElement = document.querySelector(`[data-id="${orderId}"]`);
                 if (orderElement) {
                     orderElement.remove();
